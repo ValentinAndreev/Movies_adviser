@@ -6,8 +6,12 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    - if current_user
-      =<> current_user.email
-      =< link_to 'Home', root_path
-      =< link_to 'Logout', destroy_user_session_path, method: :delete
-    = yield
+    .container
+      - if current_user
+        =<> current_user.email
+        =< link_to 'Home', root_path
+        =< link_to 'Edit profile', edit_user_registration_path(current_user.id)
+        =< link_to 'Logout', destroy_user_session_path, method: :delete
+      p.notice= notice
+      p.alert= alert
+      = yield
