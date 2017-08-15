@@ -35,7 +35,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'bootstrap', '~> 4.0.0.beta'  
 gem 'devise'
-gem 'devise-bootstrap-views'
+gem 'devise-bootstrap-views', :git => 'https://github.com/hisea/devise-bootstrap-views', :branch => 'bootstrap4'
 gem 'jquery-rails'
 gem 'slim'
 gem 'simple_form'
