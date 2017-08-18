@@ -9,6 +9,7 @@ html
     .container
       =<> current_user.username
       - if current_user.id
+        =< image_tag(current_user.avatar, height: '40', class: 'img-circle') if current_user.avatar
         =< link_to 'Edit profile', edit_user_registration_path(current_user.id)
         =< link_to 'Logout', destroy_user_session_path, method: :delete 
         =< link_to 'Home', root_path

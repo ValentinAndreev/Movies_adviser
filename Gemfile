@@ -33,12 +33,15 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'bootstrap', '~> 4.0.0.beta'  
+gem 'bootstrap', '~> 4.0.0.beta'
+gem 'carrierwave', '~> 1.0'
 gem 'devise'
 gem 'devise-bootstrap-views', :git => 'https://github.com/hisea/devise-bootstrap-views', :branch => 'bootstrap4'
+gem 'dotenv-rails', require: 'dotenv/rails-now'
+gem "fog-aws"
 gem 'jquery-rails'
-gem 'slim'
 gem 'simple_form'
+gem 'slim'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -48,7 +51,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'factory_girl_rails'
   gem 'launchy'
-  gem 'rspec-rails'  
+  gem 'rspec-rails'
 end
 
 group :development do
