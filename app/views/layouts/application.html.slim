@@ -7,7 +7,7 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
     .container
-      =<> current_user.email
+      =<> current_user.username
       - if current_user.id
         =< link_to 'Edit profile', edit_user_registration_path(current_user.id)
         =< link_to 'Logout', destroy_user_session_path, method: :delete 
