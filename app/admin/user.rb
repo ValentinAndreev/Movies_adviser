@@ -1,10 +1,6 @@
 ActiveAdmin.register User do
   permit_params :username, :email, :avatar, :password, :password_confirmation, :is_admin
   
-  action_item :home do
-    link_to "Home", root_path
-  end
-
   index do
     column :username
     column :email
