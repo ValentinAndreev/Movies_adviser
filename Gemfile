@@ -32,17 +32,6 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'activeadmin'
-gem 'bootstrap', '~> 4.0.0.beta'
-gem 'carrierwave', '~> 1.0'
-gem 'devise'
-gem 'devise-bootstrap-views', :git => 'https://github.com/hisea/devise-bootstrap-views', :branch => 'bootstrap4'
-gem 'dotenv-rails', require: 'dotenv/rails-now'
-gem "fog-aws"
-gem 'jquery-rails'
-gem 'omniauth-google-oauth2'
-gem 'simple_form'
-gem 'slim'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -69,3 +58,16 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'activeadmin'
+gem 'bootstrap', '~> 4.0.0.beta'
+gem 'carrierwave', '~> 1.0'
+gem 'devise'
+gem 'devise-bootstrap-views', :git => 'https://github.com/hisea/devise-bootstrap-views', :branch => 'bootstrap4'
+gem 'dotenv-rails', require: 'dotenv/rails-now'
+gem "fog-aws"
+gem 'jquery-rails'
+gem 'omniauth-google-oauth2'
+gem 'simple_form'
+gem 'slim'
+gem 'themoviedb-api'

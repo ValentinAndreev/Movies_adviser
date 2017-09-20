@@ -20,3 +20,4 @@
 config/database.yml
 config/aws.env
 config/google.env
+config/tmdb_api_key.env
