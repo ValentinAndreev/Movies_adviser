@@ -77,6 +77,9 @@ GEM
       autoprefixer-rails (>= 6.0.3)
       popper_js (~> 1.11.1)
       sass (>= 3.4.19)
+    bootstrap4-kaminari-views (1.0.0)
+      kaminari (>= 0.13)
+      rails (>= 3.1)
     builder (3.2.3)
     byebug (9.1.0)
     capybara (2.15.1)
@@ -374,6 +377,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap (~> 4.0.0.beta)
+  bootstrap4-kaminari-views
   byebug
   capybara (~> 2.13)
   carrierwave (~> 1.0)
