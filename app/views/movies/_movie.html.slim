@@ -1,12 +1,13 @@
 .container
   .row
     .text-center.col-md-2
-      = image_tag(@base_url + movie.poster_path, height: '200')
+      = link_to(movie) do
+        = image_tag(@base_url + movie.poster_path, height: '200')
       br/
       = movie.vote_average   
     .col-md-10
       strong
-        | #{movie.title} (#{movie.release_date.year})
+        = link_to "#{movie.title} (#{movie.release_date.year})", movie
       br/  
       = movie.overview
 hr/

@@ -4,16 +4,11 @@ feature "Guest's actions" do
   background { visit root_path }
 
   scenario 'guest must see invitation to regitration or login and links to do it' do
-    expect(page).to have_content 'Guest'    
-    expect(page).to have_content 'You need to sign in or sign up before continuing.'
-    expect(page).to have_content 'Sign in'
-    expect(page).to have_content 'Sign up'
+    check_list_of_content(['Guest', 'You need to sign in or sign up before continuing.', 'Sign in', 'Sign up', 'TMDB', 'IMDB'])
   end
 
   scenario "guest can't see links to users actions" do
-    expect(page).to_not have_content 'Logout'
-    expect(page).to_not have_content 'Edit profile'
-    expect(page).to_not have_content 'Home'
+    check_list_of_content(['Logout', 'Edit profile', 'All movies'], false)
   end
 
   scenario 'guest can sign up' do

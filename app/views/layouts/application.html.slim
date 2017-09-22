@@ -7,15 +7,33 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
     .container
-      =<> current_user.username
-      - if current_user.id
-        - if current_user.is_admin?
-          | - administrator
-          =< link_to 'Admin root', admin_root_path
-        =< image_tag(current_user.avatar, height: '40', class: 'img-circle') if current_user.avatar
-        =< link_to 'Edit profile', edit_user_registration_path(current_user.id)
-        =< link_to 'Logout', destroy_user_session_path, method: :delete 
-        =< link_to 'Home', root_path
+      nav.navbar.fixed-top.navbar-expand-sm.navbar-dark.bg-primary
+        = link_to('Home', root_path, class: 'navbar-brand')     
+        button.navbar-toggler[type="button" data-toggle="collapse" data-target="#collapsingNavbarLg"]
+          span.navbar-toggler-icon
+        #collapsingNavbarLg.navbar-collapse.collapse
+          ul.navbar-nav
+            li.nav.item.nav-link
+              = current_user.username
+            - if current_user.id
+              li.nav-item
+                = link_to('Admin root', admin_root_path, class: 'nav-link') if current_user.is_admin? 
+              li.nav-item
+                = image_tag(current_user.avatar, height: '40', class: 'img-circle') if current_user.avatar
+              li.nav-item
+                = link_to('Edit profile', edit_user_registration_path(current_user.id), class: 'nav-link')
+              li.nav-item
+                = link_to('Logout', destroy_user_session_path, method: :delete, class: 'nav-link')
+              li.nav-item
+                = link_to('All movies', movies_path, class: 'nav-link')
+            li.nav-item
+              a.nav-link[href="https://www.themoviedb.org/"]
+                | TMDB                
+            li.nav-item
+              a.nav-link[href="http://www.imdb.com/"]
+                | IMDB
+      br/
+      br/
       p.notice= notice
       p.alert= alert
       = yield

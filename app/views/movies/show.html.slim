@@ -1,0 +1,16 @@
+.container
+  .row
+    = image_tag(@base_url + @movie.poster_path, height: '400')
+    .col-md-9
+      .text-center   
+        strong
+          | #{@movie.title} (#{@movie.release_date.year})
+      br/
+      = @movie.overview
+      br/
+      br/
+      | Rating: #{@movie.vote_average}
+      br/
+      | Genres: #{@movie.genres.join(', ')}
+      br/
+      = link_to "This movie on IMBD", "http://www.imdb.com/title/#{@movie.imbd_id}/"
