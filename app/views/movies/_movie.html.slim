@@ -2,7 +2,7 @@
   .row
     .text-center.col-md-2
       = link_to(movie) do
-        = image_tag(@base_url + movie.poster_path, height: '200')
+        = image_tag(poster_path(movie), height: '200')
       br/
       = movie.vote_average   
     .col-md-10

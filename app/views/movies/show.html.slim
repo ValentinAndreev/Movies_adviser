@@ -1,10 +1,10 @@
 .container
   .row
-    = image_tag(@base_url + @movie.poster_path, height: '400')
+    .col-md-3.text-center
+      = image_tag(poster_path(@movie), height: '400')
     .col-md-9
-      .text-center   
-        strong
-          | #{@movie.title} (#{@movie.release_date.year})
+      h4.text-center   
+        | #{@movie.title} (#{@movie.release_date.year})
       br/
       = @movie.overview
       br/
@@ -14,3 +14,16 @@
       | Genres: #{@movie.genres.join(', ')}
       br/
       = link_to "This movie on IMBD", "http://www.imdb.com/title/#{@movie.imbd_id}/"
+  hr/
+  h5.my-4.text-center.text-lg-left
+    | Recommendations from TMDB:
+  .row.text-center.text-lg-left
+    - @recommendations.each do |rec_movie|  
+      .col-lg-3.col-md-4.col-xs-6.text-center 
+        a.d-block.mb-4.h-100
+          - if rec_movie
+            = title(rec_movie)
+            br/
+            = image_tag(poster_path(rec_movie), height: '100')
+            br/
+            = rec_movie.vote_average
