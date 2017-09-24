@@ -1,0 +1,4 @@
+= form_with model: [@movie, @comment] do |form|
+  = form.label :comment
+  = form.text_field :body, as: :text, required: true, class: 'form-control'
+  = form.button :Submit, class: "btn btn-link"

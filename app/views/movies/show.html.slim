@@ -1,8 +1,8 @@
 .container
   .row
-    .col-md-3.text-center
-      = image_tag(poster_path(@movie), height: '400')
-    .col-md-9
+    .col-lg-4.col-md-5.text-center
+      = image_tag(poster_path(@movie, 'w300'), height: '400')
+    .col-lg-8.col-md-7
       h4.text-center   
         | #{@movie.title} (#{@movie.release_date.year})
       br/
@@ -18,12 +18,18 @@
   h5.my-4.text-center.text-lg-left
     | Recommendations from TMDB:
   .row.text-center.text-lg-left
-    - @recommendations.each do |rec_movie|  
-      .col-lg-3.col-md-4.col-xs-6.text-center 
+    - @recommendations.each do |rec_movie|
+      .col-lg-3.col-md-4.col-xs-12.text-center
         a.d-block.mb-4.h-100
-          - if rec_movie
-            = title(rec_movie)
-            br/
-            = image_tag(poster_path(rec_movie), height: '100')
-            br/
-            = rec_movie.vote_average
+          = title(rec_movie)
+          br/
+          = image_tag(poster_path(rec_movie, 'w92'))
+          br/
+          = rec_movie.vote_average
+= render @comments
+#comments
+= link_to 'New comment', new_movie_comment_path(@movie), remote: true, class: 'float-right'
+br/
+= link_to 'Close comment form', '#', id: 'comment-close', class: 'float-right'
+#form-comment
+#form

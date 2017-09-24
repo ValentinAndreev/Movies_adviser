@@ -2,12 +2,21 @@ class MoviesController < ApplicationController
   before_action :base_url
 
   def index
-    @movies = Movie.order(:id).all.page(params[:page]).per(10)
+    @movies = Movie.order(:created_at).all.page(params[:page]).per(10)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show
     @movie = Movie.find(params[:id])
+    @comments = @movie.comments.order(:created_at).all
     @recommendations = Tmdb::Movie.recommendations(@movie.tmdb_id).results[0..11]
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
   
   private
@@ -17,6 +26,6 @@ class MoviesController < ApplicationController
   end
 
   def base_url
-    @base_url ||= Tmdb::Configuration.get.images.base_url+'w300'
+    @base_url ||= Tmdb::Configuration.get.images.base_url
   end
 end
