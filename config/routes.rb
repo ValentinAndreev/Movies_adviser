@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   root 'home#index'
   resources :movies do
     resources :comments
+    get 'recommendations', on: :member
   end
 end

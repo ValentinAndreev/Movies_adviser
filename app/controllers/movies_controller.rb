@@ -12,11 +12,15 @@ class MoviesController < ApplicationController
   def show
     @movie = Movie.find(params[:id])
     @comments = @movie.comments.order(:created_at).all
-    @recommendations = Tmdb::Movie.recommendations(@movie.tmdb_id).results[0..11]
     respond_to do |format|
       format.html
       format.js
     end
+  end
+
+  def recommendations
+    @movie = Movie.find(params[:id])
+    @recommendations = Movie.recommendations(@movie.tmdb_id)
   end
   
   private

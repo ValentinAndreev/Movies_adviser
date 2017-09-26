@@ -1,0 +1,13 @@
+h5.my-4.text-center.text-lg-left
+  | Recommendations from TMDB for #{@movie.title}:
+.row.text-center.text-lg-left
+  - @recommendations.each do |rec_movie|
+    .col-lg-3.col-md-4.col-xs-12.text-center
+      a.d-block.mb-4.h-105
+        = title(rec_movie)
+        br/
+        = link_to(rec_movie) do
+          = image_tag(poster_path(rec_movie, 'w92'))
+        br/
+        = rec_movie.vote_average
+      hr/
