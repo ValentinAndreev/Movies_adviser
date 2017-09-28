@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to @post, notice: 'Comment was deleted' if current_user.admin }
+      format.html { redirect_to @post, notice: 'Comment was deleted' }
       format.js
     end
   end

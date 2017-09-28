@@ -16,11 +16,18 @@
       = link_to "This movie on IMBD", "http://www.imdb.com/title/#{@movie.imbd_id}/"
       br/
       = link_to "Recommendations from TMDB", recommendations_movie_path(@movie.id)
+      br/
+      | Your recommendation: #{recommendation}
+      br/
+      | Change opinion to:
+      =< link_to 'recommended', votes_path(value: 1, movie_id: @movie.id), method: :patch unless recommendation == 'recommended'
+      =< link_to 'neutral', votes_path(value: 0, movie_id: @movie.id), method: :patch unless recommendation == 'neutral'
+      =< link_to 'not recommended', votes_path(value: -1, movie_id: @movie.id), method: :patch unless recommendation == 'not recommended'
   hr/
 = render @comments
 #comments
 = link_to 'New comment', new_movie_comment_path(@movie), remote: true, class: 'float-right'
 br/
-= link_to 'Close comment form', '#', id: 'comment-close', class: 'float-right'
+= link_to 'Close comment form', '#', id: 'comment-close', remote: true, class: 'float-right'
 #form-comment
 #form

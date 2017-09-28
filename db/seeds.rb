@@ -3,7 +3,7 @@ require 'open-uri'
 require 'nokogiri'
 require 'themoviedb-api'
 
-User.create!(username: 'admin', 
+User.create!(username: 'admin',
              email: 'admin@mail.com',
              password: 'password',
              password_confirmation: 'password',
@@ -24,7 +24,7 @@ movies_data = []
     movie_data = Tmdb::Find.movie(number, external_source: 'imdb_id').first
     movie_genres = Tmdb::Movie.detail(movie_data.id).genres
     genres = []
-    movie_genres.each { |data| genres << data.name }
+    movie_genres.each { |genres_id| genres << genres_id.name }
     sleep 0.35
     Movie.create!(genres: genres, 
                   title: movie_data.title,

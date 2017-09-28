@@ -5,4 +5,4 @@
 $ ->
   $('#comment-close').click ->
     $('#comment-close').hide()
-    $('#form').fadeOut()
+    $('#form-comment').fadeOut()

@@ -7,4 +7,5 @@ Rails.application.routes.draw do
     resources :comments
     get 'recommendations', on: :member
   end
+  resource :votes, only: :update
 end
