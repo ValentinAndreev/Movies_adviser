@@ -29,13 +29,12 @@ feature "User's actions" do
   scenario 'user can set own recommendations on movie' do
     Capybara.exact = true
     click_on "#{movie.title} (#{movie.release_date.year})"
-    expect(page).to have_content("neutral")
-    expect(page).to_not have_link("neutral")
+    expect(page).to have_content("Your recommendation: neutral")
     expect(page).to have_link("recommended")
     expect(page).to have_link("not recommended")
     click_on 'recommended'
-    expect(page).to_not have_link("recommended")
+    expect(page).to_not have_link("Your recommendation: recommended")
     click_on 'not recommended'
-    expect(page).to_not have_link("not recommended")
+    expect(page).to_not have_link("Your recommendation: not recommended")
   end
 end

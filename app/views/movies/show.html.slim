@@ -17,12 +17,12 @@
       br/
       = link_to "Recommendations from TMDB", recommendations_movie_path(@movie.id)
       br/
-      | Your recommendation: #{recommendation}
-      br/
+      #rec
+        | Your recommendation: #{recommendation}
       | Change opinion to:
-      =< link_to 'recommended', votes_path(value: 1, movie_id: @movie.id), method: :patch unless recommendation == 'recommended'
-      =< link_to 'neutral', votes_path(value: 0, movie_id: @movie.id), method: :patch unless recommendation == 'neutral'
-      =< link_to 'not recommended', votes_path(value: -1, movie_id: @movie.id), method: :patch unless recommendation == 'not recommended'
+      =< link_to 'recommended', votes_path(value: 1, movie_id: @movie.id), remote: true, method: :patch, id: 'recommended'
+      =< link_to 'neutral', votes_path(value: 0, movie_id: @movie.id), remote: true, method: :patch, id: 'neutral'
+      =< link_to 'not recommended', votes_path(value: -1, movie_id: @movie.id), remote: true, method: :patch, id: 'not-recommended'
   hr/
 = render @comments
 #comments
