@@ -9,17 +9,25 @@ class CommentsController < ApplicationController
     @comment = @movie.comments.new(comment_params)
     @comment.username = current_user.username
     render 'new' unless @comment.save
+    respond_to do |format|
+      format.html { redirect_to @movie, notice: 'Comment was created' }
+      format.js
+    end
   end
 
   def update
     @comment.update(comment_params)
     render 'edit' unless @comment.update(comment_params)
+    respond_to do |format|
+      format.html { redirect_to @movie, notice: 'Comment was updated' }
+      format.js
+    end
   end
 
   def destroy
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to @post, notice: 'Comment was deleted' }
+      format.html { redirect_to @movie, notice: 'Comment was deleted' }
       format.js
     end
   end

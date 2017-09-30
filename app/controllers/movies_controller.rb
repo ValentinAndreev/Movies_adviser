@@ -3,10 +3,6 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.order(:created_at).page(params[:page]).per(10)
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   def show
@@ -18,7 +14,7 @@ class MoviesController < ApplicationController
   end
 
   def recommendations
-    @recommendations = Movie.recommendations(@movie.tmdb_id)
+    @recommendations = @movie.recommendations
   end
 
   private
