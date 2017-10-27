@@ -7,5 +7,7 @@ Rails.application.routes.draw do
     resources :comments
     get 'recommendations', on: :member
   end
+  get 'recommended', to: 'movies#recommended'
+  get 'not_recommended', to: 'movies#not_recommended'
   resource :votes, only: :update
 end

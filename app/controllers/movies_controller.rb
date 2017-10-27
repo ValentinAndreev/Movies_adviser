@@ -1,8 +1,16 @@
 class MoviesController < ApplicationController
-  before_action :find_movie, except: [:index]
+  before_action :find_movie, except: [:index, :recommended, :not_recommended]
 
   def index
     @movies = Movie.order(:created_at).page(params[:page]).per(10)
+  end
+
+  def recommended
+    @movies = Movie.where(id: current_user.recommended).page(params[:page]).per(10)
+  end
+
+  def not_recommended
+    @movies = Movie.where(id: current_user.not_recommended).page(params[:page]).per(10)    
   end
 
   def show

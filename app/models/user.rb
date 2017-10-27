@@ -16,4 +16,12 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0, 20]
     end
   end
+
+  def recommended
+    votes.where(value: 1).pluck(:movie_id)
+  end
+
+  def not_recommended
+    votes.where(value: -1).pluck(:movie_id)
+  end
 end

@@ -1,7 +1,7 @@
 .container
   .row
     .col-lg-4.col-md-5.text-center
-      = image_tag(poster_path(@movie, 'w300'), height: '400')
+      = image_tag(poster_path(@movie, 'w300'), height: '380')
     .col-lg-8.col-md-7
       h4.text-center   
         | #{@movie.title} (#{@movie.release_date.year})
