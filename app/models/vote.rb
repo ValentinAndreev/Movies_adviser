@@ -6,5 +6,5 @@ class Vote < ApplicationRecord
 
   def default_value
     self.value ||= 0
-  end  
+  end
 end

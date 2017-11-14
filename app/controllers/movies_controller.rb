@@ -1,16 +1,8 @@
 class MoviesController < ApplicationController
-  before_action :find_movie, except: [:index, :recommended, :not_recommended]
+  before_action :find_movie, except: [:index]
 
-  def index
-    @movies = Movie.order(:created_at).page(params[:page]).per(10)
-  end
-
-  def recommended
-    @movies = Movie.where(id: current_user.recommended).page(params[:page]).per(10)
-  end
-
-  def not_recommended
-    @movies = Movie.where(id: current_user.not_recommended).page(params[:page]).per(10)    
+  def index  
+    @movies = FindMovies.new(Movie.all).call(movie_params)
   end
 
   def show
@@ -28,7 +20,8 @@ class MoviesController < ApplicationController
   private
 
   def movie_params
-    params.require(:movie).permit(:poster_path, :vote_average, :overview, :title, :tmdb_id, :imdb_id)
+    params.permit(:recommendation, :page, :current_user)
+    params.merge!(current_user: current_user)
   end
 
   def find_movie
