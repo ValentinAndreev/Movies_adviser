@@ -5,8 +5,7 @@
     | Author: #{comment.username}. Created: #{comment.created_at}
     p
       - if comment.username == current_user.username || current_user.is_admin?
-        = link_to 'Edit comment', edit_movie_comment_path(@movie, comment), class: 'float-right', remote: true
+        = link_to 'Edit comment', edit_movie_comment_path(@movie, comment), remote: true
+        =< link_to 'Delete comment', movie_comment_path(@movie, comment), method: :delete, data: {confirm: 'Are you sure?'}, remote: true
         br/
-        = link_to 'Delete comment', movie_comment_path(@movie, comment), method: :delete, data: {confirm: 'Are you sure?'}, class: 'float-right', remote: true
-        br/
-        hr/
+hr/

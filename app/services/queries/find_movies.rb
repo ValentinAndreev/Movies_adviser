@@ -12,8 +12,9 @@ class FindMovies
     elsif params[:recommendation] == 'not recommended'
       scoped = not_recommended(scoped, params[:current_user])
     end
+    scoped = search(scoped, params[:search])
     scoped = paginate(scoped, params[:page])
-    [scoped, params[:recommendation] || 'all']
+    [scoped, message(params)]
   end
 
   private
@@ -28,5 +29,13 @@ class FindMovies
 
   def paginate(scoped, page)
     scoped.order(:created_at).page(page).per(10)
+  end
+
+  def search(scoped, query = nil)
+    query ? scoped.where('title ILIKE ?', "%#{query}%") : scoped
+  end
+
+  def message(params)
+    params[:search] ? 'searched' : params[:recommendation] || 'all'
   end
 end

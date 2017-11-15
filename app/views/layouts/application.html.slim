@@ -29,13 +29,17 @@ html
               li.nav-item
                 = link_to('Recommended', movies_path(recommendation: 'recommended'), class: 'nav-link')
               li.nav-item
-                = link_to('Not recommended', movies_path(recommendation: 'not recommended'), class: 'nav-link')                        
+                = link_to('Not recommended', movies_path(recommendation: 'not recommended'), class: 'nav-link')
+              li.nav-item                
+                = form_with url: '/movies', method: :get, local: true, class: "form-inline", input_html: { required: true } do |form|
+                  = form.text_field :search, required: true, class: "form-control"
+                  = form.submit "Search", class: "btn btn-default btn-primary"                                
             li.nav-item
               a.nav-link[href="https://www.themoviedb.org/"]
                 | TMDB                
             li.nav-item
               a.nav-link[href="http://www.imdb.com/"]
-                | IMDB
+                | IMDB                
       br/
       br/
       br/

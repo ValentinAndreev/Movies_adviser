@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
   before_action :find_movie, except: [:index]
 
-  def index  
+  def index
     @movies = FindMovies.new(Movie.all).call(movie_params)
   end
 
@@ -20,7 +20,7 @@ class MoviesController < ApplicationController
   private
 
   def movie_params
-    params.permit(:recommendation, :page, :current_user)
+    params.permit(:recommendation, :page, :current_user, :search)
     params.merge!(current_user: current_user)
   end
 

@@ -37,4 +37,11 @@ feature "User's actions" do
     click_on 'not recommended'
     expect(page).to_not have_link("Your recommendation: not recommended")
   end
+
+  scenario 'user can search movie' do
+    fill_in 'search', with: 'shawshank'
+    click_on 'Search'
+    expect(page).to have_content("The Shawshank Redemption")
+    expect(page).to_not have_content("Gladiator")
+  end
 end
