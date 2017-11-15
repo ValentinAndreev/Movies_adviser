@@ -13,8 +13,10 @@ class FindMovies
       scoped = not_recommended(scoped, params[:current_user])
     end
     scoped = search(scoped, params[:search])
+    scoped = search_by_genres(scoped, params[:genres]) unless params[:genres] == ''
+    count = scoped.count
     scoped = paginate(scoped, params[:page])
-    [scoped, message(params)]
+    [scoped, message(params), count]
   end
 
   private
@@ -35,7 +37,11 @@ class FindMovies
     query ? scoped.where('title ILIKE ?', "%#{query}%") : scoped
   end
 
+  def search_by_genres(scoped, genres)
+    genres ? scoped.where("genres @> ARRAY[?]::varchar[]", genres) : scoped
+  end
+
   def message(params)
-    params[:search] ? 'searched' : params[:recommendation] || 'all'
+    params[:search] || params[:genres] ? 'searched' : params[:recommendation] || 'all'
   end
 end

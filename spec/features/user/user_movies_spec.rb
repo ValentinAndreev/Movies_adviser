@@ -3,7 +3,7 @@ require 'rails_helper'
 feature "User's actions" do
   let!(:user) { create(:user) }
   let!(:movie) { create(:movie) }
-  let!(:another_movie) { create(:movie, title: 'Gladiator', tmdb_id: 98) }  
+  let!(:another_movie) { create(:movie, title: 'Gladiator', tmdb_id: 98, genres: ["Action"]) }  
   before do
     log_in_user(user.username, user.password)
     click_on 'All movies'    
@@ -38,8 +38,15 @@ feature "User's actions" do
     expect(page).to_not have_link("Your recommendation: not recommended")
   end
 
-  scenario 'user can search movie' do
+  scenario 'user can search movie by name' do
     fill_in 'search', with: 'shawshank'
+    click_on 'Search'
+    expect(page).to have_content("The Shawshank Redemption")
+    expect(page).to_not have_content("Gladiator")
+  end
+
+  scenario 'user can search movie by genre' do
+    select("Crime", from: "genres").select_option
     click_on 'Search'
     expect(page).to have_content("The Shawshank Redemption")
     expect(page).to_not have_content("Gladiator")

@@ -31,9 +31,10 @@ html
               li.nav-item
                 = link_to('Not recommended', movies_path(recommendation: 'not recommended'), class: 'nav-link')
               li.nav-item                
-                = form_with url: '/movies', method: :get, local: true, class: "form-inline", input_html: { required: true } do |form|
-                  = form.text_field :search, required: true, class: "form-control"
-                  = form.submit "Search", class: "btn btn-default btn-primary"                                
+                = form_with url: '/movies', method: :get, local: true, class: "form-inline" do |form|
+                  = form.text_field :search, class: "form-control"
+                  = form.select :genres, ["Action", "Adventure", "History", "War", "Comedy", "Drama", "Romance", "Horror", "Thriller", "Science Fiction", "Mystery", "Fantasy", "Crime", "Family", "Animation", "Western", "Music", "Foreign"], { include_blank: true }, { class: "form-control" }
+                  = form.submit "Search", class: "btn btn-default btn-primary"
             li.nav-item
               a.nav-link[href="https://www.themoviedb.org/"]
                 | TMDB                
