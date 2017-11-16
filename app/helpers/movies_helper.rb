@@ -10,10 +10,9 @@ module MoviesHelper
   end
 
   def recommendation
-    vote_value = @vote&.value || 0
-    if vote_value == 1
+    if @vote.value == 1
       'recommended'
-    elsif vote_value == -1
+    elsif @vote.value == -1
       'not recommended'
     else
       'neutral'

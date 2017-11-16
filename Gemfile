@@ -69,5 +69,6 @@ gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem "fog-aws"
 gem 'jquery-rails'
 gem 'omniauth-google-oauth2'
+gem 'popper_js'
 gem 'slim'
 gem 'themoviedb-api'
