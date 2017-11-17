@@ -20,7 +20,7 @@ class MoviesController < ApplicationController
   private
 
   def movie_params
-    params.permit(:recommendation, :page, :current_user, :search, :genres).merge!(current_user: current_user)
+    params.permit(:recommendation, :page, :current_user, :search, :genres, :sort, :order).merge!(current_user: current_user)
   end
 
   def find_movie

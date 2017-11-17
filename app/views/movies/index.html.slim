@@ -1,2 +1,21 @@
-h2 List of #{@movies[1]} movies (#{@movies[2]} results).
+.container.search-form
+  br/
+  = form_with url: '/movies', method: :get, local: true, class: "form-inline" do |form|
+    = form.label :recommendation, 'Status:'
+    = form.select :recommendation, ["Recommended", "Not recommended"], { include_blank: true }, { class: "form-control" }
+    = form.label :search, 'Text:'  
+    = form.text_field :search, class: "form-control"
+    = form.label :genres, 'Genre:'   
+    = form.select :genres, ["Action", "Adventure", "History", "War", "Comedy", "Drama", "Romance", "Horror", "Thriller", "Science Fiction", "Mystery", "Fantasy", "Crime", "Family", "Animation", "Western", "Music", "Foreign"], { include_blank: true }, { class: "form-control" }
+    = form.radio_button(:sort, 'Rating', id: 'rating')
+    = form.label 'Rating'    
+    = form.radio_button(:sort, 'Date', id: 'date')
+    = form.label 'Date'
+    = form.check_box :order
+    = form.label :order, "Reverse"
+    = form.submit "Search/reorder", class: "btn btn-default btn-primary"
+  br/
+br/  
+h5 Results for: #{@movies[1]} (#{@movies[2]}).
+br/
 = render 'movies'

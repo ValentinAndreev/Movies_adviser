@@ -13,12 +13,16 @@
  *= require_self
  */
 
- @import "bootstrap";
+@import "bootstrap";
 
  a:link {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 #comment-close {
   display: none;
+}
+
+.search-form {
+  background-color: #e6f7ff;
 }
