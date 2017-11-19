@@ -43,19 +43,18 @@ feature "User's actions" do
   scenario 'user can order movies by rating' do
     page.find(:css, '[id=rating]').set(true)
     click_on 'Search/reorder'
-    expect(page).to have_content('sorted by: rating')
+    expect(page).to have_content('rating')
   end
 
   scenario 'user can order movies by date' do
     page.find(:css, '[id=date]').set(true)
     click_on 'Search/reorder'
-    expect(page).to have_content('sorted by: date')
+    expect(page).to have_content('date')
   end
 
   scenario 'user can reverse order of movies' do
     page.find(:css, '[name=order]').set(true)
     click_on 'Search/reorder'
     expect(page).to have_content('reversed')
-    save_and_open_page
   end
 end

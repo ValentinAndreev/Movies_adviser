@@ -25,7 +25,7 @@ html
               li.nav-item
                 = link_to('Logout', destroy_user_session_path, method: :delete, class: 'nav-link')
               li.nav-item
-                = link_to('All movies', movies_path, class: 'nav-link')
+                = link_to('All movies', movies_path(recommendation: 'all movies  '), class: 'nav-link')
             li.nav-item
               a.nav-link[href="https://www.themoviedb.org/"]
                 | TMDB

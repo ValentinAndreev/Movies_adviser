@@ -43,16 +43,6 @@ class FindMovies
   end
 
   def message(params)
-    message = ''
-    if params[:recommendation] && params[:recommendation] != ''
-      message += params[:recommendation].downcase
-    else
-      message += 'all'
-    end
-    message += ", search by text: #{params[:search]}" if params[:search] && params[:search] != ''
-    message += ", search by genre: " + params[:genres].downcase if params[:genres] && params[:genres] != ''
-    message += ", sorted by: " + params[:sort].downcase if params[:sort]
-    message += ', reversed' if params[:order] == "1"
-    message
+    params.except('current_user').values.delete_if(&:empty?).join(', ').downcase.sub('1', 'reversed  ').remove('0')[0...-2]
   end
 end
