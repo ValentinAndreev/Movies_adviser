@@ -1,5 +1,4 @@
-.container.search-form
-  br/
+.container
   = form_with url: '/movies', method: :get, local: true, class: "form-inline" do |form|
     = form.label :recommendation, 'Status:'
     = form.select :recommendation, ["Recommended", "Not recommended"], { include_blank: true }, { class: "form-control" }
@@ -14,8 +13,7 @@
     = form.check_box :order
     = form.label :order, "Reverse"
     = form.submit "Search/reorder", class: "btn btn-default btn-primary"
-  br/
-br/  
+br/
 h5 Results for: #{@movies[1]} (#{@movies[2]}).
 br/
 = render 'movies'
