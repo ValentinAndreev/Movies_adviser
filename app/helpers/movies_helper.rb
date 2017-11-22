@@ -1,6 +1,6 @@
 module MoviesHelper
   def poster_path(movie, size)
-    @base_url ||= Tmdb::Configuration.get.images.base_url
+    @base_url ||= "http://image.tmdb.org/t/p/"
     @base_url + size + movie.poster_path
   end
 

@@ -10,7 +10,6 @@ feature "User's actions on reviews" do
     log_in_user(user.username, user.password)
     click_on 'All movies'
     click_on "#{movie.title} (#{movie.release_date.year})"
-    sleep 3
   end
 
   scenario 'user can open own review' do
