@@ -19,7 +19,7 @@ feature "User's recommendations" do
     click_on 'All movies'
     select("Recommended", from: "recommendation").select_option
     click_on 'Search/reorder'
-    check_list_of_content(["#{movie.title} (#{movie.release_date.year})"])
+    expect(page).to have_content("#{movie.title} (#{movie.release_date.year})")
     expect(page).to_not have_content("#{another_movie.title} (#{another_movie.release_date.year})")
   end
 
@@ -33,7 +33,7 @@ feature "User's recommendations" do
     click_on 'All movies'    
     select("Not recommended", from: "recommendation").select_option
     click_on 'Search/reorder'
-    check_list_of_content(["#{another_movie.title} (#{another_movie.release_date.year})"])
+    expect(page).to have_content("#{another_movie.title} (#{another_movie.release_date.year})")
     expect(page).to_not have_content("#{movie.title} (#{movie.release_date.year})")
   end
 end

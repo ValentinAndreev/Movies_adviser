@@ -1,0 +1,9 @@
+- movie = @my_review.movie
+h5 My review for #{movie.title} (#{movie.release_date.year})
+=< link_to 'To movie', movie
+hr/
+=< @my_review.text
+hr/
+= link_to 'All reviews', reviews_path(movie_id: movie)
+=< link_to 'Edit review', edit_review_path(@my_review, movie_id: movie)
+=< link_to 'Destroy', review_path(@my_review), method: :delete, data: { confirm: 'Are you sure?' }

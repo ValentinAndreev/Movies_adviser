@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "User's actions" do
+feature "User's actions on movies" do
   let!(:user) { create(:user) }
   let!(:movie) { create(:movie) }
   let!(:another_movie) { create(:movie, title: 'Gladiator', tmdb_id: 98, release_date: "1993-09-23", vote_average: 8.5, genres: ["History"]) }

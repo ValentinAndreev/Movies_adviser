@@ -11,15 +11,21 @@
       br/
       | Rating: #{@movie.vote_average}
       br/
-      | Genres: #{@movie.genres.join(', ')}
+      | Genres: #{@movie.genres.join(', ')}.
       br/
       = link_to "This movie on IMBD", "http://www.imdb.com/title/#{@movie.imbd_id}/"
       br/
       = link_to "Recommendations from TMDB", recommendations_movie_path(@movie.id)
       br/
+      - if @my_review.exists?
+        = link_to "My review", my_review_path(movie_id: @movie.id)
+      - else
+        = link_to "Create review", new_review_path(movie_id: @movie.id)
+      br/
+      = link_to "All reviews", reviews_path(movie_id: @movie)
       #rec
         | Your recommendation: #{recommendation}
-      | Change opinion to:
+      | Change to:
       =< link_to 'recommended', votes_path(value: 1, movie_id: @movie.id), remote: true, method: :patch, id: 'recommended'
       =< link_to 'neutral', votes_path(value: 0, movie_id: @movie.id), remote: true, method: :patch, id: 'neutral'
       =< link_to 'not recommended', votes_path(value: -1, movie_id: @movie.id), remote: true, method: :patch, id: 'not-recommended'

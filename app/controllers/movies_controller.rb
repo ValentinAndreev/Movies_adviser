@@ -7,6 +7,8 @@ class MoviesController < ApplicationController
 
   def show
     @comments = @movie.comments.order(:created_at).all
+    @my_review = Review.where(user_id: current_user.id, movie_id: @movie)
+    @reviews = Review.where(movie_id: @movie)   
     respond_to do |format|
       format.html
       format.js

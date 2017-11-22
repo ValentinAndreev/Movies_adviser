@@ -8,7 +8,7 @@ ActiveAdmin.register Movie do
     column :imbd_id
     column :tmdb_id
     column :release_date
-    column :genres    
+    column :genres
     actions
   end
 end

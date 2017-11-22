@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment
+  before_action :find_comment
 
   def new
     @comment = @movie.comments.new
@@ -38,7 +38,7 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:user, :body)
   end
 
-  def set_comment
+  def find_comment
     @movie = Movie.find(params[:movie_id]) if params[:movie_id]
     @comment = @movie.comments.find(params[:id]) if params[:id]
     @comments = @movie.comments.all

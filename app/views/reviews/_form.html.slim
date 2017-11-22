@@ -1,0 +1,8 @@
+= form_with model: @review, local: true, :html => {:class => "form-horizontal center"} do |f|
+  .form-group
+    = f.label :text, "Review for #{@movie.title}"
+    = f.text_area :text, rows: "20", class: "form-control"
+    = f.hidden_field :movie_id, value: params[:movie_id]
+  .form-group
+  = f.submit "Submit", class: "btn btn-default btn-primary"
+= link_to 'Back', reviews_path(movie_id: params[:movie_id])
