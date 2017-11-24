@@ -6,7 +6,6 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @comments = @movie.comments.order(:created_at).all
     @my_review = Review.where(user_id: current_user.id, movie_id: @movie)
     @reviews = Review.where(movie_id: @movie)   
     respond_to do |format|
@@ -26,7 +25,9 @@ class MoviesController < ApplicationController
   end
 
   def find_movie
-    @movie = Movie.find(params[:id])
+    @commentable = Movie.find(params[:id])
+    @movie = @commentable
     @vote = Vote.find_or_create_by(user_id: current_user.id, movie_id: @movie)
+    @comments = @movie.comments.order(:created_at).all    
   end
 end

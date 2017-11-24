@@ -3,11 +3,12 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: "custom_sessions", omniauth_callbacks: "callbacks" }
   root 'home#index'
   resources :movies do
-    resources :comments 
+    resources :comments
     get 'recommendations', on: :member
   end
   resource :votes, only: :update
   resources :reviews do
-    get 'my', on: :member    
+    get 'my', on: :member
+    resources :comments    
   end
 end

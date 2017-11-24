@@ -1,9 +1,16 @@
 - movie = @my_review.movie
 h5 My review for #{movie.title} (#{movie.release_date.year})
 =< link_to 'To movie', movie
-hr/
+br/
 =< @my_review.text
-hr/
+br/
 = link_to 'All reviews', reviews_path(movie_id: movie)
 =< link_to 'Edit review', edit_review_path(@my_review, movie_id: movie)
 =< link_to 'Destroy', review_path(@my_review), method: :delete, data: { confirm: 'Are you sure?' }
+hr/
+= render @comments if @comments
+#comments
+= link_to 'New comment', new_review_comment_path(@my_review), remote: true, class: 'float-right'
+br/
+= link_to 'Close comment form', '#', id: 'comment-close', remote: true, class: 'float-right'
+#form-comment

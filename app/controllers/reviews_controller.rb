@@ -1,17 +1,20 @@
 class ReviewsController < ApplicationController
-  before_action :find_review, except: :my
+  before_action :find_review, except: [:my, :index]
 
   def index
+    @movie = Movie.find_by(id: params[:movie_id])
     @reviews = Review.where(movie: @movie).order(:created_at).page(params[:page]).per(10)
     redirect_to Movie.find(params[:movie_id]) if @reviews.size == 0
   end
 
   def show 
-    redirect_to my_review_path(movie_id: @review.movie) if @review.user == current_user
+    redirect_to my_review_path(movie_id: @review.movie) if @review.user == current_user    
   end
 
   def my
-    @my_review = Review.where(user: current_user, movie_id: params[:movie_id]).first
+    @commentable = Review.where(user: current_user, movie_id: params[:movie_id]).first
+    @my_review = @commentable
+    @comments = @my_review.comments.order(:created_at).all
   end
 
   def new
@@ -54,6 +57,8 @@ class ReviewsController < ApplicationController
 
   def find_review
     @movie = Movie.find_by(id: params[:movie_id])
-    @review = Review.find_by(id: params[:id])  
+    @commentable = Review.find_by(id: params[:id])
+    @review = @commentable
+    @comments = @review.comments.order(:created_at).all if @review
   end
 end

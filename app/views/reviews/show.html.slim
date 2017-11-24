@@ -1,7 +1,14 @@
 - movie = @review.movie
 h5 Review of #{@review.user.username} for #{movie.title} (#{movie.release_date.year})
 =< link_to 'To movie', movie
-hr/
+br/
 =< @review.text
-hr/
+br/
 = link_to 'All reviews', reviews_path(movie_id: movie.id)
+hr/
+= render @comments if @comments
+#comments
+= link_to 'New comment', new_review_comment_path(@review), remote: true, class: 'float-right'
+br/
+= link_to 'Close comment form', '#', id: 'comment-close', remote: true, class: 'float-right'
+#form-comment

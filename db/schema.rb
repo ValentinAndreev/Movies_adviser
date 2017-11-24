@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171121064056) do
+ActiveRecord::Schema.define(version: 20171124070936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,10 +32,11 @@ ActiveRecord::Schema.define(version: 20171121064056) do
   create_table "comments", force: :cascade do |t|
     t.string "username"
     t.text "body"
-    t.bigint "movie_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["movie_id"], name: "index_comments_on_movie_id"
+    t.string "commentable_type"
+    t.bigint "commentable_id"
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
   end
 
   create_table "movies", force: :cascade do |t|
@@ -95,7 +96,6 @@ ActiveRecord::Schema.define(version: 20171121064056) do
     t.index ["user_id"], name: "index_votes_on_user_id"
   end
 
-  add_foreign_key "comments", "movies"
   add_foreign_key "reviews", "movies"
   add_foreign_key "reviews", "users"
   add_foreign_key "votes", "movies"
