@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include CurrentUserConcern
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :authenticate_user!  
 
   def authenticate_admin!
     redirect_to new_user_session_path unless current_user.is_admin?

@@ -8,21 +8,22 @@
       br/
       = @movie.overview
       br/
+      | Recommendations: (from -1 - not recommended, to 1 - recommended): #{@rating} (#{@votes} votes).
       br/
-      | Rating: #{@movie.vote_average}
+      | Rating IMDB: #{@movie.vote_average}
       br/
       | Genres: #{@movie.genres.join(', ')}.
       br/
       = link_to "This movie on IMBD", "http://www.imdb.com/title/#{@movie.imbd_id}/"
       br/
-      = link_to "Recommendations from TMDB", recommendations_movie_path(@movie.id)
+      = link_to "Recommendations from TMDB", recommendations_movie_path(@movie)
       br/
       - if @my_review.exists?
         = link_to "My review", my_review_path(movie_id: @movie.id)
       - else
         = link_to "Create review", new_review_path(movie_id: @movie.id)
       br/
-      = link_to "All reviews", reviews_path(movie_id: @movie)
+      = link_to "All reviews", reviews_path(movie_id: @movie) if @movie.reviews.size > 0
       #rec
         | Your recommendation: #{recommendation}
       | Change to:
