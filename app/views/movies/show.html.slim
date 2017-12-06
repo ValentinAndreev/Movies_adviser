@@ -18,12 +18,12 @@
       br/
       = link_to "Recommendations from TMDB", recommendations_movie_path(@movie)
       br/
-      - if @my_review.exists?
-        = link_to "My review", my_review_path(movie_id: @movie.id)
+      - if @review.first
+        = link_to "My review", review_path(id: @review.first.id)
       - else
         = link_to "Create review", new_review_path(movie_id: @movie.id)
       br/
-      = link_to "All reviews", reviews_path(movie_id: @movie) if @movie.reviews.size > 0
+      = link_to "All reviews", reviews_path(movie_id: @movie.id) if @movie.reviews.size > 0
       #rec
         | Your recommendation: #{recommendation}
       | Change to:

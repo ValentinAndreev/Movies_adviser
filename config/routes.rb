@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   end
   resource :votes, only: :update
   resources :reviews do
-    get 'my', on: :member
-    resources :comments    
+    resources :comments
   end
 end

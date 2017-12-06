@@ -7,7 +7,7 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @my_review = Review.where(user_id: current_user.id, movie_id: @movie)
+    @review = Review.where(user_id: current_user.id, movie_id: @movie)
     @reviews = Review.where(movie_id: @movie)
     respond_to do |format|
       format.html
@@ -32,9 +32,7 @@ class MoviesController < ApplicationController
   end
 
   def rating
-    votes = @movie.votes.pluck(:value)
-    votes_count = votes.count
-    @rating = votes_count > 0 ? (votes.sum.to_f/votes_count.to_f).round(2) : 0
-    @votes = votes.count
+    @rating = @movie.rating
+    @votes = @movie.all_votes.count
   end
 end

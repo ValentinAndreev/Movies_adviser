@@ -1,4 +1,4 @@
-= form_with model: @my_review, local: true, :html => {:class => "form-horizontal center"} do |f|
+= form_with model: @review, local: true, :html => {:class => "form-horizontal center"} do |f|
   .form-group
     = f.label :text, "Review for #{@movie.title}"
     = f.text_area :text, rows: "20", class: "form-control"
