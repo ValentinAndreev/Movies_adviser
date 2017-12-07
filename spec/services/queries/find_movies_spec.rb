@@ -9,18 +9,18 @@ describe 'Query tests' do
 
   context 'find move' do
     it 'returns all' do
-      movies = FindMovies.new(Movie.all).call({ recommendation: 'all movies  ' })
+      movies = FindMovies.new(Movie.all).call({ recommendation: 'all movies  ', current_user: user })
       expect(movies[1]).to eq('all movies')
     end
 
     it 'returns recommended' do
-      movies = FindMovies.new(Movie.all).call({ recommendation: 'recommended  ' })
-      expect(movies[1]).to eq('recommended')
+      movies = FindMovies.new(Movie.all).call({ recommendation: 'Recommended', current_user: user })
+      expect(movies[1]).to eq('recommend')
     end
 
     it 'returns not recommended' do
-      movies = FindMovies.new(Movie.all).call({ recommendation: 'not recommended  ' })
-      expect(movies[1]).to eq('not recommended')
+      movies = FindMovies.new(Movie.all).call({ recommendation: 'Not recommended', current_user: user })
+      expect(movies[1]).to eq('not recommend')
     end
   end
 end

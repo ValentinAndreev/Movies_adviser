@@ -1,7 +1,7 @@
 .container
   = form_with url: '/movies', method: :get, local: true, class: "form-inline" do |form|
     = form.label :recommendation, 'Status:'
-    = form.select :recommendation, ["Recommended", "Not recommended"], { include_blank: true }, { class: "form-control" }
+    = form.select :recommendation, ["Recommended", "Not recommended", "Neutral", "Not evaluated"], { include_blank: true }, { class: "form-control" }
     = form.label :search, 'Text:'  
     = form.text_field :search, class: "form-control"
     = form.label :genres, 'Genre:'   

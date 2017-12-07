@@ -15,8 +15,8 @@ feature "User's actions on movies" do
 
   scenario 'user can visit page of movie' do
     click_on "#{movie.title} (#{movie.release_date.year})"
-    check_list_of_content(['Genres', 'Rating', movie.genres.join(', '), movie.overview, movie.vote_average])
-    expect(page).to have_link("This movie on IMBD", href: "http://www.imdb.com/title/#{movie.imbd_id}/")
+    check_list_of_content(['Genres', 'On', movie.genres.join(' '), movie.overview, movie.vote_average])
+    expect(page).to have_link("IMBD", href: "http://www.imdb.com/title/#{movie.imbd_id}/")
   end
 
   scenario 'user can visit page of TMDB recommendations for movie' do
@@ -56,5 +56,12 @@ feature "User's actions on movies" do
     page.find(:css, '[name=order]').set(true)
     click_on 'Search/reorder'
     expect(page).to have_content('reversed')
+  end
+
+  scenario 'user can open all movies by genre from single movie' do
+    click_on "#{movie.title} (#{movie.release_date.year})"
+    click_on 'Drama'
+    expect(page).to have_content("The Shawshank Redemption")
+    expect(page).to_not have_content("Gladiator")
   end
 end

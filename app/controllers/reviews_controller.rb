@@ -3,7 +3,7 @@ class ReviewsController < ApplicationController
 
   def index
     @reviews = @movie.reviews.order(:created_at).page(params[:page]).per(10)
-    redirect_to @movie if @reviews&.size == 0
+    redirect_to @movie if @reviews.size == 0
   end
 
   def show; end

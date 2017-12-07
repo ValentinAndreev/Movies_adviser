@@ -7,15 +7,15 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
     .container
-      nav.navbar.fixed-top.navbar-expand-sm.navbar-dark.bg-primary
-        = link_to('Home', root_path, class: 'navbar-brand')     
+      nav.navbar.fixed-top.navbar-expand-sm.navbar-dark.bg-primary  
         button.navbar-toggler[type="button" data-toggle="collapse" data-target="#collapsingNavbarLg"]
           span.navbar-toggler-icon
         #collapsingNavbarLg.navbar-collapse.collapse
           ul.navbar-nav
             li.nav.item.nav-link
-              = current_user.username
             - if current_user.id
+              li.nav-item            
+                = link_to("#{current_user.username}", root_path, class: 'nav-link')            
               li.nav-item
                 = image_tag(current_user.avatar, height: '40', class: "rounded-circle") if current_user.avatar
               li.nav-item
