@@ -7,7 +7,7 @@ User.create!(username: 'admin',
              email: 'admin@mail.com',
              password: 'password',
              password_confirmation: 'password',
-             is_admin: true) unless User.find_by(username: 'admin')
+             role: 'admin') unless User.find_by(username: 'admin')
 
 Movie.destroy_all
 movies_data = []
@@ -25,7 +25,6 @@ movies_data = []
     movie_genres = Tmdb::Movie.detail(movie_data.id).genres
     genres = []
     movie_genres.each { |genres_id| genres << genres_id.name }
-    sleep 0.35
     Movie.create!(genres: genres, 
                   title: movie_data.title,
                   overview: movie_data.overview,
@@ -34,7 +33,7 @@ movies_data = []
                   vote_average: vote,
                   tmdb_id: movie_data.id,
                   release_date: movie_data.release_date.to_date)
-    puts Movie.last.title
+    puts "#{Movie.count} #{Movie.last.title}"
   end
 end
 puts "Added #{Movie.count} movies to DB"

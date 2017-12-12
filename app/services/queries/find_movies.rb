@@ -6,8 +6,8 @@ class FindMovies
   end
 
   def call(params)
-    @current_user = params[:current_user]
     scoped = @initial_scope
+    @current_user = params[:current_user]    
     if params[:recommendation]
       recommendation = recommend_method(params[:recommendation])
       scoped = self.send(recommendation) unless recommendation == ''
@@ -17,7 +17,7 @@ class FindMovies
     count = scoped.count
     scoped = paginate(scoped, params[:page], params[:sort])
     scoped.reverse_order! if params[:order] == "1"
-    [scoped, message(params), count]
+    [scoped, message(params).presence || 'all movies', count]
   end
 
   private
@@ -41,7 +41,7 @@ class FindMovies
 
   def not_evaluated
     @initial_scope.where.not(id: recommended).merge(@initial_scope.where.not(id: not_recommended)).merge(@initial_scope.where.not(id: neutral))
-  end  
+  end
 
   def paginate(scoped, page, sort)
     sort == 'Date' ? scoped.order(:release_date ).page(page).per(10) : scoped.order(vote_average: :desc).page(page).per(10)
@@ -57,7 +57,6 @@ class FindMovies
 
   def message(params)
     return params[:genres].downcase if params.except(:current_user, :genres).blank?  
-    return 'all movies' if params[:recommendation] == '' && params.except(:current_user, :recommendation) == ''
     params.except(:current_user, :page).values.delete_if(&:empty?).join(', ').downcase.sub('1', 'reversed  ').remove('0')[0...-2]
   end
 end
