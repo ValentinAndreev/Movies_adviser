@@ -1,15 +1,12 @@
 class FindMovies
   def initialize(initial_scope, current_user)
     @initial_scope = initial_scope
-    @current_user = current_user    
+    @current_user = current_user
   end
 
   def call(params)
     scoped = @initial_scope
-    if params[:recommendation]
-      recommendation = recommend_method(params[:recommendation])
-      scoped = self.send(recommendation) unless recommendation == ''
-    end
+    scoped = recommendation(params[:recommendation]) if !params[:recommendation].blank? && params[:recommendation] != "all movies  "
     scoped = search(scoped, params[:search]) unless params[:search] == ''
     scoped = search_by_genres(scoped, params[:genres]) unless params[:genres] == ''
     count = scoped.count
@@ -20,25 +17,13 @@ class FindMovies
 
   private
 
-  def recommend_method(recommendation)
-    meth = recommendation.downcase.sub(' ', '_')
-    ['recommended', 'not_recommended', 'neutral', 'not_evaluated'].any? { |word| meth.include?(word) } ? meth : ''
-  end
-
-  def recommended
-    Movie.where(id: @current_user.votes.where(value: 1).pluck(:movie_id))
-  end
-
-  def not_recommended
-    Movie.where(id: @current_user.votes.where(value: -1).pluck(:movie_id))
-  end
-
-  def neutral
-    Movie.where(id: @current_user.votes.where(value: 0).pluck(:movie_id))
-  end
-
-  def not_evaluated
-    @initial_scope.where.not(id: recommended).merge(@initial_scope.where.not(id: not_recommended)).merge(@initial_scope.where.not(id: neutral))
+  def recommendation(level)
+    h = { 'Recommended' => 1, 'Not recommended' => -1, 'Neutral' => 0 }
+    if h[level]
+      Movie.where(id: @current_user.votes.where(value: h[level]).select(:movie_id))
+    else
+      Movie.where.not(id: @current_user.votes.where(value: [-1, 0, 1]).select(:movie_id))
+    end
   end
 
   def paginate(scoped, page, sort)

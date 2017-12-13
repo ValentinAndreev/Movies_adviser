@@ -11,9 +11,8 @@ feature "User's recommendations" do
 
   scenario 'user can set and see list of own recommendations' do
     click_on "#{movie.title} (#{movie.release_date.year})"
-    expect(page).to have_content("Your recommendation: neutral")
-    expect(page).to have_link("recommended")
-    expect(page).to have_link("not recommended")
+    expect(page).to have_content("Your recommendation: not evaluated")
+    check_list_of_links(["recommended", "not recommended", "neutral"]) 
     click_on 'recommended'
     expect(page).to_not have_link("Your recommendation: recommended")
     click_on 'All movies'

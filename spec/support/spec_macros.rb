@@ -15,4 +15,14 @@ module SpecMacros
       end
     end
   end
+
+  def check_list_of_links(content, presence = true)
+    content.each do |element|
+      if presence == true
+        expect(page).to have_link element
+      else
+        expect(page).to_not have_link element
+      end
+    end
+  end  
 end

@@ -1,7 +1,6 @@
 module MoviesHelper
   def poster_path(movie, size)
-    @base_url ||= "http://image.tmdb.org/t/p/"
-    @base_url + size + movie.poster_path
+    "http://image.tmdb.org/t/p/" + size + movie.poster_path
   end
 
   def title(movie)
@@ -10,12 +9,7 @@ module MoviesHelper
   end
 
   def recommendation
-    if @vote.value == 1
-      'recommended'
-    elsif @vote.value == -1
-      'not recommended'
-    else
-      'neutral'
-    end
+    h = { 1 =>'recommended', -1 =>'not_recommended', 0 => 'neutral' }
+    h.key?(@vote&.value) ? h[@vote.value] : 'not evaluated'
   end
 end
