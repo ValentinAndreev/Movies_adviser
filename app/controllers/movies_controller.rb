@@ -1,9 +1,9 @@
 class MoviesController < ApplicationController
   before_action :find_movie, except: [:index]
-  before_action :rating, only: [:show]  
+  before_action :rating, only: [:show]
 
   def index
-    @movies = FindMovies.new(Movie.all).call(movie_params)
+    @movies = FindMovies.new(Movie.all, current_user).call(movie_params)
   end
 
   def show
@@ -22,7 +22,7 @@ class MoviesController < ApplicationController
   private
 
   def movie_params
-    params.permit(:recommendation, :page, :current_user, :search, :genres, :sort, :order).merge!(current_user: current_user)
+    params.permit(:recommendation, :page, :current_user, :search, :genres, :sort, :order)
   end
 
   def find_movie

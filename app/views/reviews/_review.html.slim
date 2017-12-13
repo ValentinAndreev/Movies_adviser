@@ -1,7 +1,6 @@
-=< review_item(review)
-p
-  strong Author:
-  =< review.user.username
+=< sanitize review_item(review)
+strong Author:
+=< review.user.username
 =< link_to 'Show', review_path(review)
 - if review.user == current_user
   =< link_to 'Edit review', edit_review_path(review, movie_id: review.movie_id)

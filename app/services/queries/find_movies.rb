@@ -1,13 +1,11 @@
 class FindMovies
-  attr_accessor :initial_scope
-
-  def initialize(initial_scope)
+  def initialize(initial_scope, current_user)
     @initial_scope = initial_scope
+    @current_user = current_user    
   end
 
   def call(params)
     scoped = @initial_scope
-    @current_user = params[:current_user]    
     if params[:recommendation]
       recommendation = recommend_method(params[:recommendation])
       scoped = self.send(recommendation) unless recommendation == ''

@@ -11,6 +11,7 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_self
+ *= require trix
  */
 
 @import "bootstrap";
@@ -21,8 +22,4 @@
 
 #comment-close {
   display: none;
-}
-
-.search-form {
-  background-color: #e6f7ff;
 }

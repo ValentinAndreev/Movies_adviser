@@ -18,7 +18,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.user = current_user
     if @review.save
-      render :show
+      redirect_to @review
     else
       render :new
     end
@@ -26,7 +26,7 @@ class ReviewsController < ApplicationController
 
   def update
     if @review.update(review_params)
-      render :show
+      redirect_to @review
     else
       render :edit
     end
