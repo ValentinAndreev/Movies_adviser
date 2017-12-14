@@ -3,11 +3,13 @@ class MoviesController < ApplicationController
   before_action :rating, only: [:show]
 
   def index
-    @movies = FindMovies.new(Movie.all, current_user).call(movie_params)
+    scope = FindMovies.new(Movie.all, current_user)
+    @movies = scope.call(movie_params)
+    @message = scope.message(movie_params)
   end
 
   def show
-    @reviews = Review.where(movie_id: @movie)    
+    @reviews = Review.where(movie_id: @movie)
     @review = @reviews.where(user_id: current_user)
     respond_to do |format|
       format.html
