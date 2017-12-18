@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @commentable.comments.new(comment_params)
-    @comment.username = current_user.username
+    @comment.user_id = current_user.id
     render 'new' unless @comment.save
     respond_to do |format|
       format.html { redirect_to @commentable, notice: 'Comment was created' }

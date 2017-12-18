@@ -1,0 +1,10 @@
+| Name: #{@user.username} #{image_tag(@user.avatar, height: '40', class: "rounded-circle")}
+br/
+- if @user == current_user
+  | Email: #{@user.email}
+br/
+| Registration: #{@user.created_at}
+br/
+| About me:
+br/
+= @user.about

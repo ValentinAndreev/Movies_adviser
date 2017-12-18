@@ -9,7 +9,7 @@ module MoviesHelper
   end
 
   def recommendation
-    h = { 1 =>'recommended', -1 =>'not_recommended', 0 => 'neutral' }
+    h = { 1 =>'recommended', -1 =>'not recommended', 0 => 'neutral' }
     h.key?(@vote&.value) ? h[@vote.value] : 'not evaluated'
   end
 end

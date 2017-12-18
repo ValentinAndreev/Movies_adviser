@@ -23,6 +23,10 @@
     <%= f.label :avatar %><br />
     <%= f.file_field :avatar, as: :file %>
   </div>
+  <div class="form-group">
+    <%= f.label 'About me' %><br />
+    <%= f.text_field :about, class: 'form-control' %>
+  </div>  
 
   <div class="form-group">
     <%= f.submit  t('.sign_up', default: 'Sign up'), class: 'btn btn-primary' %>
