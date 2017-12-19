@@ -2,9 +2,9 @@
   #text
     = comment.body
     br/
-    | Author: #{comment.user_id}. Created: #{comment.created_at}
+    | Author: #{comment.username}. Created: #{comment.created_at}
     p
-      - if comment.user_id == current_user.id
+      - if comment.username == current_user.username
         = link_to 'Edit comment', [:edit, @commentable, comment], remote: true
         =< link_to 'Delete comment', [@commentable, comment], method: :delete, data: {confirm: 'Are you sure?'}, remote: true
         br/
