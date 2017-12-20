@@ -5,6 +5,16 @@ br/
 br/
 | Registration: #{@user.created_at}
 br/
-| About me:
-br/
-= @user.about
+| About me: #{@user.about}
+- if @user.following.count > 0
+  br/
+  = link_to "following #{@user.following.count}", following_user_path(@user)
+- if @user.followers.count > 0
+  br/
+  = link_to "followers #{@user.followers.count}", followers_user_path(@user)
+  br/
+- unless @user == current_user
+  - if current_user.followings?(@user)
+    = render 'unfollow'
+  - else
+    = render 'follow'

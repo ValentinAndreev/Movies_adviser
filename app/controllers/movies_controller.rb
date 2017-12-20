@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
-  before_action :find_movie, except: [:index]
-  before_action :rating, only: [:show]
+  before_action :find_movie, except: :index
+  before_action :rating, only: :show
 
   def index
     scope = FindMovies.new(Movie.all, current_user)
