@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class VotesController < ApplicationController
   def update
     @vote = Vote.find_or_create_by(user_id: current_user.id, movie_id: params[:movie_id])
@@ -5,7 +7,7 @@ class VotesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to Movie.find(params[:movie_id]) }
       format.js
-    end  
+    end
   end
 
   private

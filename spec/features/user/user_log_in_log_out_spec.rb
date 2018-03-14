@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature "User's actions" do
@@ -6,7 +8,7 @@ feature "User's actions" do
   scenario 'login with right email and password' do
     log_in_user(user.username, user.password)
     expect(page).to have_content 'Signed in successfully.'
-  end  
+  end
 
   scenario "not registered user can't be logined" do
     log_in_user('wrong_name', 'wrong_password')

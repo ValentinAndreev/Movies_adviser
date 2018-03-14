@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-feature "User - dashboard" do
+feature 'User - dashboard' do
   let!(:user) { create(:user) }
 
   scenario "user can't see admin's dashboard" do

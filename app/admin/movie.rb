@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Movie do
   permit_params :title, :overview, :vote_average, :imbd_id, :tmdb_id, :release_date, :genres
 

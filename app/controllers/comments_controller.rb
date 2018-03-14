@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
+  before_action :find_commentable
   before_action :find_comment
 
   def new
@@ -38,9 +41,12 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:user, :body, :movie_id, :review_id)
   end
 
-  def find_comment
-    resource, id = request.path.split('/')[1,2]
+  def find_commentable
+    resource, id = request.path.split('/')[1, 2]
     @commentable = resource.singularize.classify.constantize.find(id)
+  end
+
+  def find_comment
     @comment = @commentable.comments.find(params[:id]) if params[:id]
     @comments = @commentable.comments.all
   end

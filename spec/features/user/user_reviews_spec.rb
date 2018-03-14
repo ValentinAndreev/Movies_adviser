@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature "User's actions on reviews" do
@@ -14,32 +16,32 @@ feature "User's actions on reviews" do
 
   scenario 'user can open own review' do
     click_on 'My review'
-    expect(page).to have_content("Text of review")
+    expect(page).to have_content('Text of review')
   end
 
   scenario 'user can edit own review' do
-    click_on 'My review' 
+    click_on 'My review'
     click_on 'Edit review'
     find("#trix_input_review_#{review.id}", visible: false).set('<div>Edited review</div>')
     click_on 'Submit'
-    expect(page).to_not have_content("Text of review")
-    expect(page).to have_content("Edited review")
-  end  
+    expect(page).to_not have_content('Text of review')
+    expect(page).to have_content('Edited review')
+  end
 
   scenario 'user can delete and create own review' do
     click_on 'My review'
     click_on 'Destroy'
-    expect(page).to_not have_content("Edited review")
+    expect(page).to_not have_content('Edited review')
     click_on "#{movie.title} (#{movie.release_date.year})"
     click_on 'Create review'
-    find("#trix_input_review", visible: false).set('<div>Text of review</div>')
+    find('#trix_input_review', visible: false).set('<div>Text of review</div>')
     click_on 'Submit'
     check_list_of_content(['My review', 'Text of review'])
   end
 
   scenario 'user can see all reviews' do
     click_on 'All reviews'
-    check_list_of_content(["Text of review", 'Another review'])
+    check_list_of_content(['Text of review', 'Another review'])
   end
 
   scenario 'user can only see another users reviews' do
@@ -48,5 +50,5 @@ feature "User's actions on reviews" do
     check_list_of_content(['Edit review', 'Destroy'], false)
     click_on 'Show'
     expect(page).to have_content("Review of #{another_user.username}")
-  end  
+  end
 end

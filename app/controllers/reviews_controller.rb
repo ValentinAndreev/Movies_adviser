@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
 class ReviewsController < ApplicationController
   before_action :find_review
+  before_action :find_comments
 
   def index
     @reviews = @movie.reviews.order(:created_at).page(params[:page]).per(10)
-    redirect_to @movie if @reviews.size == 0
+    redirect_to @movie if @reviews.empty?
   end
 
   def show; end
@@ -44,8 +47,12 @@ class ReviewsController < ApplicationController
   end
 
   def find_review
-    @review = @commentable = Review.find_by(id: params[:id]) || Review.where(user: current_user, movie_id: params[:movie_id]).first
+    @review = Review.find_by(id: params[:id]) || Review.where(user: current_user, movie_id: params[:movie_id]).first
     @movie = @review&.movie || Movie.find_by(id: params[:movie_id])
-    @comments = @commentable.comments.order(:created_at).all if @review
+  end
+
+  def find_comments
+    @commentable = @review
+    @comments = @review.comments.order(:created_at).all if @review
   end
 end

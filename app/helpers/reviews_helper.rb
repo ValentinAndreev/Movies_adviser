@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ReviewsHelper
   def review_item(review)
     text = review.text

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MoviesController < ApplicationController
   before_action :find_movie, except: :index
   before_action :rating, only: :show

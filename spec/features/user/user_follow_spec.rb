@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature "User's follow actions" do
@@ -21,13 +23,13 @@ feature "User's follow actions" do
     click_on another_user.username
     click_on 'Unfollow'
     expect(page).to_not have_content 'followers 1'
-    expect(page).to_not have_link 'Unfollow'    
+    expect(page).to_not have_link 'Unfollow'
     expect(page).to have_button 'Follow'
   end
 
   scenario "user can't follow to himself" do
     click_on 'Users'
-    click_on "#{user.id}"
+    click_on user.id.to_s
     expect(page).to_not have_button 'Follow'
     expect(page).to_not have_button 'Unfollow'
   end

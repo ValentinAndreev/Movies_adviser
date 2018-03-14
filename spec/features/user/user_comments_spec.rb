@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'Comment actions' do
@@ -21,10 +23,10 @@ feature 'Comment actions' do
     click_on 'All movies'
     click_on "#{movie.title} (#{movie.release_date.year})"
     click_on 'My review'
-    click_on 'New comment'    
+    click_on 'New comment'
     fill_in 'comment[body]', with: 'Comment text'
     click_on 'Submit'
     expect(page).to have_selector('#form-comment', visible: false)
     expect(page).to have_content 'Comment text'
-  end  
+  end
 end

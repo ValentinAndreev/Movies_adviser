@@ -1,4 +1,6 @@
-ActiveAdmin.register Comment, as: "UserComment" do
+# frozen_string_literal: true
+
+ActiveAdmin.register Comment, as: 'UserComment' do
   permit_params :body, :username, :commentable_type, :commentable
 
   index do

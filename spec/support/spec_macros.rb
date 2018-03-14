@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SpecMacros
   def log_in_user(name, password)
     visit root_path
@@ -24,5 +26,5 @@ module SpecMacros
         expect(page).to_not have_link element
       end
     end
-  end  
+  end
 end

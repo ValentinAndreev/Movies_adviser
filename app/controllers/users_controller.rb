@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
-before_action :find_user, except: :index
+  before_action :find_user, except: :index
 
   def show
     @followed = current_user.active_relationships.find_by(followed_id: @user.id)

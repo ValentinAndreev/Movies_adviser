@@ -1,17 +1,39 @@
 AllCops:
+  TargetRubyVersion: 2.4
   Exclude:
-    - 'db/*/*'
-    - 'db/*'
-    - 'config/*/*'
-    - 'spec/spec_helper.rb'
-    - "**/*_spec.rb"
-  DisplayCopNames: true
+    - 'Gemfile'
+    - 'db/**/*'
+    - 'bin/**/*'
+    - 'config/**/*'
+    - 'vendor/**/*'
 
 Documentation:
   Enabled: false
 
-Metrics/LineLength:
-  Enabled: false
+Lint/EndAlignment:
+  EnforcedStyleAlignWith: variable
 
-Style/StringLiterals:
-  Enabled: false
+Layout/IndentArray:
+  EnforcedStyle: consistent
+
+Layout/IndentHash:
+  EnforcedStyle: consistent
+
+Layout/MultilineAssignmentLayout:
+  EnforcedStyle: same_line
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+Metrics/LineLength:
+  Max: 120
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    default: []
+    '%i': '[]'
+    '%I': '[]'
+    '%w': '[]'
+    '%W': '[]'
+    '%r': '{}'

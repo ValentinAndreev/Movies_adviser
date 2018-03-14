@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'Query tests' do
@@ -11,49 +13,49 @@ describe 'Query tests' do
 
   context 'find move' do
     it 'returns all' do
-      movies = @scope.call({ recommendation: '', order: '0' })
-      message = @scope.message({ recommendation: '', order: '0' })
+      movies = @scope.call(recommendation: '', order: '0')
+      message = @scope.message(recommendation: '', order: '0')
       expect(movies.count).to eq(2)
       expect(message).to eq('all movies')
     end
 
     it 'returns recommended' do
-      message = @scope.message({ recommendation: 'Recommended' })
+      message = @scope.message(recommendation: 'Recommended')
       expect(message).to eq('recommended')
     end
 
     it 'returns not recommended' do
-      message = @scope.message({ recommendation: 'Not recommended' })
+      message = @scope.message(recommendation: 'Not recommended')
       expect(message).to eq('not recommended')
     end
 
     it 'returns neutral' do
-      message = @scope.message({ recommendation: 'Neutral' })
+      message = @scope.message(recommendation: 'Neutral')
       expect(message).to eq('neutral')
     end
 
     it 'returns not evaluated' do
-      message = @scope.message({ recommendation: 'Not evaluated' })
+      message = @scope.message(recommendation: 'Not evaluated')
       expect(message).to eq('not evaluated')
     end
 
     it 'returns by genres' do
-      message = @scope.message({ genres: 'Crime' })
+      message = @scope.message(genres: 'Crime')
       expect(message).to eq('crime')
     end
 
     it 'returns by date' do
-      message = @scope.message({ sort: 'Date' })
+      message = @scope.message(sort: 'Date')
       expect(message).to eq('date')
     end
 
     it 'returns by reversed order' do
-      message = @scope.message({ order: '1' })
+      message = @scope.message(order: '1')
       expect(message).to eq('reversed')
     end
 
     it 'returns by serched text' do
-      message = @scope.message({ search: 'text' })
+      message = @scope.message(search: 'text')
       expect(message).to eq('text')
     end
   end

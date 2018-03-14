@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 FactoryGirl.define do
   factory :comment do
-    username "username"
-    body "comment"
+    username 'username'
+    body 'comment'
     movie nil
   end
 end
