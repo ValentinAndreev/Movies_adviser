@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+# :reek:DuplicateMethodCall { exclude: [ update ] }
+# :reek:TooManyStatements { exclude: [ update ] }
 
 class VotesController < ApplicationController
   def update

@@ -8,23 +8,21 @@ module SpecMacros
     click_on 'Sign in'
   end
 
-  def check_list_of_content(content, presence = true)
+  def check_presence(content)
     content.each do |element|
-      if presence == true
-        expect(page).to have_content element
-      else
-        expect(page).to_not have_content element
-      end
+      expect(page).to have_content element
     end
   end
 
-  def check_list_of_links(content, presence = true)
+  def check_absence(content)
     content.each do |element|
-      if presence == true
-        expect(page).to have_link element
-      else
-        expect(page).to_not have_link element
-      end
+      expect(page).to_not have_content element
+    end
+  end
+
+  def check_links(content)
+    content.each do |element|
+      expect(page).to have_link element
     end
   end
 end

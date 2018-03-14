@@ -10,14 +10,12 @@ feature "User's actions" do
 
   scenario 'view own profile' do
     click_on user.username
-    expect(page).to have_content user.username
-    expect(page).to have_content user.email
-    check_list_of_content([user.username, user.email])
+    check_presence([user.username, user.email])
   end
 
   scenario 'view list of users' do
     click_on 'Users'
-    check_list_of_content([user.username, another_user.username])
+    check_presence([user.username, another_user.username])
   end
 
   scenario 'view another user profile' do

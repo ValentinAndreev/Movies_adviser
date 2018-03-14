@@ -11,7 +11,8 @@ class Movie < ApplicationRecord
   end
 
   def rating
-    all_votes.count.positive? ? (all_votes.sum.to_f / all_votes.count.to_f).round(2) : 0
+    votes_number = all_votes.count
+    votes_number.positive? ? (all_votes.sum.to_f / votes_number.to_f).round(2) : 0
   end
 
   def all_votes

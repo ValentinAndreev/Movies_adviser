@@ -1,8 +1,11 @@
 # frozen_string_literal: true
+# :reek:NilCheck { exclude: [ find_movie ] }
+# :reek:TooManyInstanceVariables { max_instance_variables: 5 }
 
 class ReviewsController < ApplicationController
   before_action :find_review
   before_action :find_comments
+  before_action :find_movie
 
   def index
     @reviews = @movie.reviews.order(:created_at).page(params[:page]).per(10)
@@ -18,8 +21,7 @@ class ReviewsController < ApplicationController
   def edit; end
 
   def create
-    @review = Review.new(review_params)
-    @review.user = current_user
+    @review = Review.new(review_params.merge(user: current_user)) 
     if @review.save
       redirect_to @review
     else
@@ -48,11 +50,14 @@ class ReviewsController < ApplicationController
 
   def find_review
     @review = Review.find_by(id: params[:id]) || Review.where(user: current_user, movie_id: params[:movie_id]).first
-    @movie = @review&.movie || Movie.find_by(id: params[:movie_id])
   end
 
   def find_comments
     @commentable = @review
     @comments = @review.comments.order(:created_at).all if @review
+  end
+
+  def find_movie
+    @movie = @review&.movie || Movie.find_by(id: params[:movie_id])    
   end
 end

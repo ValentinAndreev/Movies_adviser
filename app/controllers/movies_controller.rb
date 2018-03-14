@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# :reek:TooManyInstanceVariables { max_instance_variables: 10 }
 
 class MoviesController < ApplicationController
   before_action :find_movie, except: :index
@@ -11,8 +12,7 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @reviews = Review.where(movie_id: @movie)
-    @review = @reviews.where(user_id: current_user)
+    @review = Review.where(movie_id: @movie, user_id: current_user)
     respond_to do |format|
       format.html
       format.js

@@ -6,11 +6,11 @@ feature "Guest's actions" do
   background { visit root_path }
 
   scenario 'guest must see invitation to regitration or login and links to do it' do
-    check_list_of_content(['You need to sign in or sign up before continuing.', 'Sign in', 'Sign up', 'TMDB', 'IMDB'])
+    check_presence(['You need to sign in or sign up before continuing.', 'Sign in', 'Sign up', 'TMDB', 'IMDB'])
   end
 
   scenario "guest can't see links to users actions" do
-    check_list_of_content(['Logout', 'Edit profile', 'All movies'], false)
+    check_absence(['Logout', 'Edit profile', 'All movies'])
   end
 
   scenario 'guest can sign up' do

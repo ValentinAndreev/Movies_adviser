@@ -1,6 +1,13 @@
 require_relative 'boot'
 
-require 'rails/all'
+require "active_model/railtie"
+require "active_job/railtie"
+require "active_record/railtie"
+require "action_controller/railtie"
+require "action_mailer/railtie"
+require "action_view/railtie"
+require "sprockets/railtie"
+require "rails/test_unit/railtie"
 require 'carrierwave'
 require 'carrierwave/orm/activerecord'
 
@@ -9,6 +16,7 @@ require 'carrierwave/orm/activerecord'
 Bundler.require(*Rails.groups)
 
 module MoviesAdviser
+  # Main Class
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1

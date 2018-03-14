@@ -4,10 +4,10 @@ module CurrentUserConcern
   extend ActiveSupport::Concern
 
   def current_user
-    super || guest_user
+    super || CurrentUserConcern.guest_user
   end
 
-  def guest_user
+  def self.guest_user
     GuestUser.new(email: 'guest@example.com', username: 'guest', role: 'guest')
   end
 end

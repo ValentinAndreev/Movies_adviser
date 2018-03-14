@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# :reek:DuplicateMethodCall { exclude: [ from_omniauth ]
 
 class User < ApplicationRecord
   # Include default devise modules. Others available are:

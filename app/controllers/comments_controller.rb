@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# :reek:TooManyStatements { exclude: [ create ] }
 
 class CommentsController < ApplicationController
   before_action :find_commentable
@@ -9,9 +10,8 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = @commentable.comments.new(comment_params)
-    @comment.username = current_user.username
-    render 'new' unless @comment.save
+    @comment = @commentable.comments.new(comment_params.merge(username: current_user.username))
+    render :new unless @comment.save
     respond_to do |format|
       format.html { redirect_to @commentable, notice: 'Comment was created' }
       format.js
@@ -19,8 +19,7 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @comment.update(comment_params)
-    render 'edit' unless @comment.update(comment_params)
+    render :edit unless @comment.update(comment_params)
     respond_to do |format|
       format.html { redirect_to @commentable, notice: 'Comment was updated' }
       format.js
@@ -44,10 +43,10 @@ class CommentsController < ApplicationController
   def find_commentable
     resource, id = request.path.split('/')[1, 2]
     @commentable = resource.singularize.classify.constantize.find(id)
+    @comments = @commentable.comments.all
   end
 
   def find_comment
-    @comment = @commentable.comments.find(params[:id]) if params[:id]
-    @comments = @commentable.comments.all
+    @comment = @commentable.comments.find_by(id: params[:id])
   end
 end

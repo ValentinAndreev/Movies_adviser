@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+# :reek:NilCheck { exclude: [ recommendation ] }
+# :reek:UtilityFunction { exclude: [ poster_path, title ] }
 
 module MoviesHelper
   def poster_path(movie, size)
@@ -11,7 +13,7 @@ module MoviesHelper
   end
 
   def recommendation
-    h = { 1 => 'recommended', -1 => 'not recommended', 0 => 'neutral' }
-    h.key?(@vote&.value) ? h[@vote.value] : 'not evaluated'
+    vote = { 1 => 'recommended', -1 => 'not recommended', 0 => 'neutral' }
+    vote.key?(@vote&.value) ? vote[@vote.value] : 'not evaluated'
   end
 end

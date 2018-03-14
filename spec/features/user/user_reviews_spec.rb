@@ -36,18 +36,18 @@ feature "User's actions on reviews" do
     click_on 'Create review'
     find('#trix_input_review', visible: false).set('<div>Text of review</div>')
     click_on 'Submit'
-    check_list_of_content(['My review', 'Text of review'])
+    check_presence(['My review', 'Text of review'])
   end
 
   scenario 'user can see all reviews' do
     click_on 'All reviews'
-    check_list_of_content(['Text of review', 'Another review'])
+    check_presence(['Text of review', 'Another review'])
   end
 
   scenario 'user can only see another users reviews' do
     click_on 'All reviews'
     click_on 'Destroy'
-    check_list_of_content(['Edit review', 'Destroy'], false)
+    check_absence(['Edit review', 'Destroy'])
     click_on 'Show'
     expect(page).to have_content("Review of #{another_user.username}")
   end
