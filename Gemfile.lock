@@ -86,6 +86,9 @@ GEM
       rails (>= 3.1)
     brakeman (4.2.0)
     builder (3.2.3)
+    bullet (5.7.5)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11.0)
     byebug (9.1.0)
     capybara (2.15.1)
       addressable
@@ -372,6 +375,7 @@ GEM
       unf_ext
     unf_ext (0.0.7.4)
     unicode-display_width (1.3.0)
+    uniform_notifier (1.11.0)
     virtus (1.0.5)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
@@ -400,6 +404,7 @@ DEPENDENCIES
   bootstrap (~> 4.0.0.beta)
   bootstrap4-kaminari-views
   brakeman
+  bullet
   byebug
   capybara (~> 2.13)
   carrierwave (~> 1.0)

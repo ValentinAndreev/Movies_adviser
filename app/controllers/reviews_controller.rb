@@ -4,12 +4,12 @@
 # :reek:TooManyInstanceVariables { max_instance_variables: 5 }
 
 class ReviewsController < ApplicationController
-  before_action :find_review
-  before_action :find_comments
+  before_action :find_review, except: %i[index new create]
+  before_action :find_comments, only: :show
   before_action :find_movie
 
   def index
-    @reviews = @movie.reviews.order(:created_at).page(params[:page]).per(10)
+    @reviews = @movie.reviews.includes(:user).order(:created_at).page(params[:page]).per(10)
     redirect_to @movie if @reviews.empty?
   end
 

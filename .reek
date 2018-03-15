@@ -136,8 +136,6 @@ settings: &settings
   <<: *settings
   InstanceVariableAssumption:
     enabled: false
-  IrresponsibleModule:
-    enabled: false
   UncommunicativeMethodName:
     enabled: false
   PrimaDonnaMethod:

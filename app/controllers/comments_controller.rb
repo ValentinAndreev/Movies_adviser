@@ -4,7 +4,7 @@
 
 class CommentsController < ApplicationController
   before_action :find_commentable
-  before_action :find_comment
+  before_action :find_comment, except: %i[index new create]
 
   def new
     @comment = @commentable.comments.new

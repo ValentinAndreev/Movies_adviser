@@ -38,6 +38,7 @@ gem 'omniauth-google-oauth2'
 gem 'themoviedb-api'
 
 group :development, :test do
+  gem 'bullet'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'

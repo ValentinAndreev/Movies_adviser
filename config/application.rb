@@ -18,12 +18,20 @@ Bundler.require(*Rails.groups)
 module MoviesAdviser
   # Main Class
   class Application < Rails::Application
-    # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
     config.autoload_paths += Dir[ Rails.root.join('app', 'models', '**/') ]
     config.autoload_paths += Dir[ Rails.root.join('app', 'controllers', '**/') ]
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
+
+    config.generators do |generate|
+      generate.helper true
+      generate.helper_specs true
+      generate.javascript_engine false
+      generate.request_specs false
+      generate.routing_specs false
+      generate.stylesheets false
+      generate.view_specs false
+      generate.controller_spec true
+      generate.test_framework :rspec
+    end
   end
 end
