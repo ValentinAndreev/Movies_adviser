@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Users and followers/followings controler
 class UsersController < ApplicationController
   before_action :find_user, except: :index
 

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Google oauth authentication controller
 class CallbacksController < Devise::OmniauthCallbacksController
   def google_oauth2
     @user = User.from_omniauth(request.env['omniauth.auth'])

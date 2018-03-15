@@ -1,4 +1,4 @@
-= render 'movies/movie', movie: @movie
+= render 'web/movies/movie', movie: @movie
 = form_with model: @review, local: true, :html => {:class => "form-horizontal center"} do |f|
   .form-group
     = f.label :text, "My review:"

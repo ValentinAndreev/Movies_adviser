@@ -7,6 +7,7 @@
 # :reek:UtilityFunction { exclude: [ message ] }
 
 class FindMovies
+  # Query object for finding movie
   attr_reader :initial_scope
   attr_reader :current_user
 

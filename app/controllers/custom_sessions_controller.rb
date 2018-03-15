@@ -1,4 +1,4 @@
 # frozen_string_literal: true
 
-class CustomSessionsController < Devise::SessionsController
-end
+# User sessions controller
+class CustomSessionsController < Devise::SessionsController; end
