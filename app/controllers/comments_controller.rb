@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # :reek:TooManyStatements { exclude: [ create ] }
 
 class CommentsController < ApplicationController

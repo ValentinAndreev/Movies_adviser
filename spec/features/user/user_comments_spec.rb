@@ -10,9 +10,7 @@ feature 'Comment actions' do
   before { log_in_user(user.username, user.password) }
 
   scenario 'user can create comment for movie' do
-    click_on 'All movies'
-    click_on "#{movie.title} (#{movie.release_date.year})"
-    click_on 'New comment'
+    click ['All movies', "#{movie.title} (#{movie.release_date.year})", 'New comment']
     fill_in 'comment[body]', with: 'Comment text'
     click_on 'Submit'
     expect(page).to have_selector('#form-comment', visible: false)
@@ -20,10 +18,7 @@ feature 'Comment actions' do
   end
 
   scenario 'user can create comment for review' do
-    click_on 'All movies'
-    click_on "#{movie.title} (#{movie.release_date.year})"
-    click_on 'My review'
-    click_on 'New comment'
+    click ['All movies', "#{movie.title} (#{movie.release_date.year})", 'My review', 'New comment']
     fill_in 'comment[body]', with: 'Comment text'
     click_on 'Submit'
     expect(page).to have_selector('#form-comment', visible: false)

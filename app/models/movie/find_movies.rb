@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # :reek:ControlParameter { exclude: [ paginate ] }
 # :reek:DuplicateMethodCall { exclude: [ recommendation ]
 # :reek:FeatureEnvy { exclude: [ call ]

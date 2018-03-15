@@ -25,8 +25,7 @@ feature "User's recommendations" do
   end
 
   scenario 'user can set and see list of not recommended movies' do
-    click_on "#{another_movie.title} (#{another_movie.release_date.year})"
-    click_on 'not recommended'
+    click ["#{another_movie.title} (#{another_movie.release_date.year})", 'not recommended']
     expect(page).to_not have_link('Your recommendation: not recommended')
     click_on 'All movies'
     select('Not recommended', from: 'recommendation').select_option
@@ -36,8 +35,7 @@ feature "User's recommendations" do
   end
 
   scenario 'user can set and see list of not neutral movies' do
-    click_on "#{another_movie.title} (#{another_movie.release_date.year})"
-    click_on 'neutral'
+    click ["#{another_movie.title} (#{another_movie.release_date.year})", 'neutral']
     expect(page).to_not have_link('Your recommendation: neutral')
     click_on 'All movies'
     select('Neutral', from: 'recommendation').select_option

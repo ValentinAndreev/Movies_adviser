@@ -25,4 +25,10 @@ module SpecMacros
       expect(page).to have_link element
     end
   end
+
+  def click(elements)
+    elements.each do |element|
+      click_on element
+    end
+  end
 end

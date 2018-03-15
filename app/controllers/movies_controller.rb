@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # :reek:TooManyInstanceVariables { max_instance_variables: 10 }
 
 class MoviesController < ApplicationController

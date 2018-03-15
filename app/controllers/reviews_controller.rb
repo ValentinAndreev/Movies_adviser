@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # :reek:NilCheck { exclude: [ find_movie ] }
 # :reek:TooManyInstanceVariables { max_instance_variables: 5 }
 
@@ -21,7 +22,7 @@ class ReviewsController < ApplicationController
   def edit; end
 
   def create
-    @review = Review.new(review_params.merge(user: current_user)) 
+    @review = Review.new(review_params.merge(user: current_user))
     if @review.save
       redirect_to @review
     else
@@ -58,6 +59,6 @@ class ReviewsController < ApplicationController
   end
 
   def find_movie
-    @movie = @review&.movie || Movie.find_by(id: params[:movie_id])    
+    @movie = @review&.movie || Movie.find_by(id: params[:movie_id])
   end
 end

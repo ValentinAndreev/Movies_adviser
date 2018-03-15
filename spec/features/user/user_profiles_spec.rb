@@ -19,8 +19,7 @@ feature "User's actions" do
   end
 
   scenario 'view another user profile' do
-    click_on 'Users'
-    click_on another_user.username
+    click ['Users', another_user.username]
     expect(page).to have_content user.username
     expect(page).to_not have_content user.email
   end

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # :reek:NilCheck { exclude: [ recommendation ] }
 # :reek:UtilityFunction { exclude: [ poster_path, title ] }
 

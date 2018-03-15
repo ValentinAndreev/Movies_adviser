@@ -12,24 +12,21 @@ feature "User's follow actions" do
   end
 
   scenario 'user can follow to another user' do
-    click_on another_user.username
-    click_on 'Follow'
+    click [another_user.username, 'Follow']
     expect(page).to have_content 'followers 1'
     expect(page).to have_button 'Unfollow'
   end
 
   scenario 'user can unfollow from another user' do
     create(:relationship, follower_id: user.id, followed_id: another_user.id)
-    click_on another_user.username
-    click_on 'Unfollow'
+    click [another_user.username, 'Unfollow']
     expect(page).to_not have_content 'followers 1'
     expect(page).to_not have_link 'Unfollow'
     expect(page).to have_button 'Follow'
   end
 
   scenario "user can't follow to himself" do
-    click_on 'Users'
-    click_on user.id.to_s
+    click ['Users', user.id.to_s]
     expect(page).to_not have_button 'Follow'
     expect(page).to_not have_button 'Unfollow'
   end

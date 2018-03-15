@@ -22,8 +22,7 @@ feature "User's actions on movies" do
   end
 
   scenario 'user can visit page of TMDB recommendations for movie' do
-    click_on "#{movie.title} (#{movie.release_date.year})"
-    click_on 'Recommendations from TMDB'
+    click ["#{movie.title} (#{movie.release_date.year})", 'Recommendations from TMDB']
     check_presence(["Recommendations from TMDB for #{movie.title}:", another_movie.title.to_s])
     expect(page).to have_link('Path')
   end
@@ -61,8 +60,7 @@ feature "User's actions on movies" do
   end
 
   scenario 'user can open all movies by genre from single movie' do
-    click_on "#{movie.title} (#{movie.release_date.year})"
-    click_on 'Drama'
+    click ["#{movie.title} (#{movie.release_date.year})", 'Drama']
     expect(page).to have_content('The Shawshank Redemption')
     expect(page).to_not have_content('Gladiator')
   end

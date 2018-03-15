@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # :reek:UtilityFunction { exclude: [ review_item ] }
 
 module ReviewsHelper
