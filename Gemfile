@@ -37,6 +37,10 @@ gem "fog-aws"
 gem 'omniauth-google-oauth2'
 gem 'themoviedb-api'
 
+# Infrastructure
+gem 'newrelic_rpm'
+gem 'rollbar'
+
 group :development, :test do
   gem 'bullet'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
