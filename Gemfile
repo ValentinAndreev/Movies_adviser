@@ -41,7 +41,9 @@ group :development, :test do
   gem 'bullet'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
+  gem 'database_cleaner'
   gem 'selenium-webdriver'
+  gem 'simplecov', require: false, group: :test
   gem 'factory_girl_rails'
   gem 'launchy'
   gem 'rspec-rails'
