@@ -46,21 +46,22 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
   gem 'database_cleaner'
-  gem 'selenium-webdriver'
-  gem 'simplecov', require: false, group: :test
   gem 'factory_girl_rails'
   gem 'launchy'
+  gem 'rails-controller-testing'
   gem 'rspec-rails'
+  gem 'selenium-webdriver'
+  gem 'simplecov', require: false, group: :test
 end
 
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'web-console', '>= 3.3.0'
+  gem 'brakeman'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'reek'
+  gem 'rubocop'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'rubocop'
-  gem 'brakeman'
-  gem 'reek'
+  gem 'web-console', '>= 3.3.0'
 end

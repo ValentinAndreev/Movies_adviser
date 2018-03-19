@@ -3,7 +3,8 @@
 FactoryGirl.define do
   factory :comment do
     username 'username'
-    body 'comment'
-    movie nil
+    body 'Comment'
+    commentable_type 'Review'
+    commentable_id nil
   end
 end
