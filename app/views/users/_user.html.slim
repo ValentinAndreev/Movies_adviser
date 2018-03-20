@@ -8,5 +8,5 @@
     .col-md-8.col-lg-9
       = user.about
       hr/
-      | Reviews #{user.reviews.count} Votes #{user.votes.count}   
+      = present(user).reviews_votes
 hr/

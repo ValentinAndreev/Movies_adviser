@@ -21,6 +21,7 @@ module MoviesAdviser
     config.load_defaults 5.1
     config.autoload_paths += Dir[ Rails.root.join('app', 'models', '**/') ]
     config.autoload_paths += Dir[ Rails.root.join('app', 'controllers', '**/') ]
+    config.autoload_paths += Dir[ Rails.root.join('app', 'presenters', '**/') ]
 
     config.generators do |generate|
       generate.helper true

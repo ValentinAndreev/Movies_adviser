@@ -1,20 +1,15 @@
 | Name: #{@user.username} #{image_tag(@user.avatar, height: '40', class: "rounded-circle")}
 br/
-- if @user == current_user
-  | Email: #{@user.email}
+= @user.email(current_user)
 br/
 | Registration: #{@user.created_at}
 br/
 | About me: #{@user.about}
-- if @user.following.count > 0
+- if @user.following_count > 0
   br/
-  = link_to "following #{@user.following.count}", following_user_path(@user)
-- if @user.followers.count > 0
+  = link_to "following #{@user.following_count}", following_user_path(@user)
+- if @user.followers_count > 0
   br/
-  = link_to "followers #{@user.followers.count}", followers_user_path(@user)
+  = link_to "followers #{@user.followers_count}", followers_user_path(@user)
   br/
-- unless @user == current_user
-  - if current_user.followings?(@user)
-    = render 'unfollow'
-  - else
-    = render 'follow'
+= render "#{@user.action(current_user)}"
