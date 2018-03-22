@@ -9,13 +9,4 @@ class Movie < ApplicationRecord
   def recommendations
     Movie.where(tmdb_id: Movie.pluck(:tmdb_id) & Tmdb::Movie.recommendations(tmdb_id).results.pluck(:id))
   end
-
-  def rating
-    votes_number = all_votes.count
-    votes_number.positive? ? (all_votes.sum.to_f / votes_number.to_f).round(2) : 0
-  end
-
-  def all_votes
-    votes.pluck(:value)
-  end
 end

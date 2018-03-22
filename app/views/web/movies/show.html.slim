@@ -1,14 +1,14 @@
 .container
   .row
     .col-lg-4.col-md-5.text-center
-      = image_tag(poster_path(@movie, 'w300'), height: '380')
+      = image_tag(@movie.poster_path('w300'), height: '380')
     .col-lg-8.col-md-7
       h4.text-center
-        | #{@movie.title} (#{@movie.release_date.year})
+        = @movie.title_year
       br/
       = @movie.overview
       br/
-      | Recommendations: (from -1 - not recommended, to 1 - recommended): #{@rating} (#{@votes} votes).
+      = @movie.rating_title
       br/
       | On
       =< link_to "IMBD", "http://www.imdb.com/title/#{@movie.imbd_id}/"
@@ -25,9 +25,9 @@
       - else
         = link_to "Create review", new_review_path(movie_id: @movie)
       br/
-      = link_to "All reviews", reviews_path(movie_id: @movie) if @movie.reviews.size > 0
+      = link_to "All reviews", reviews_path(movie_id: @movie) if @movie.reviews_size > 0
       #rec
-        | Your recommendation: #{recommendation}
+        = @movie.recommendation(@vote)
       | Change to:
       =< link_to 'recommended', votes_path(value: 1, movie_id: @movie), remote: true, method: :patch, id: 'recommended'
       =< link_to 'neutral', votes_path(value: 0, movie_id: @movie), remote: true, method: :patch, id: 'neutral'

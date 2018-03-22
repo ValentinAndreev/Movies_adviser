@@ -1,14 +1,10 @@
 # frozen_string_literal: true
 
 require 'delegate'
-
+# Presenter for user
 class UserPresenter < SimpleDelegator
   def reviews_votes
     @reviews_votes ||= "Reviews #{model.reviews.count} Votes #{model.votes.count}"
-  end
-
-  def email(current_user)
-    @email ||= model.email if model == current_user
   end
 
   def following_count
