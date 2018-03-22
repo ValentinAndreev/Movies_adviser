@@ -32,7 +32,7 @@ feature "User's actions on reviews" do
     click ["#{movie.title} (#{movie.release_date.year})", 'Create review']
     find('#trix_input_review', visible: false).set('<div>Text of review</div>')
     click_on 'Submit'
-    check_presence(['My review', 'Text of review'])
+    check_presence(["Review of #{review.user.username}", 'Text of review'])
   end
 
   scenario 'user can see all reviews' do

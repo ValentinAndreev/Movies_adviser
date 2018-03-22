@@ -52,7 +52,8 @@ module Web
     end
 
     def find_review
-      @review = Review.find_by(id: params[:id]) || Review.where(user: current_user, movie_id: params[:movie_id]).first
+      review = Review.find_by(id: params[:id]) || Review.where(user: current_user, movie_id: params[:movie_id]).first
+      @review = ReviewPresenter.new(review)
     end
 
     def find_comments

@@ -20,6 +20,8 @@ class UserPresenter < SimpleDelegator
     @action ||= current_user.followings?(model) ? 'unfollow' : 'follow'
   end
 
+  private
+
   def model
     __getobj__
   end

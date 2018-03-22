@@ -1,8 +1,7 @@
-=< sanitize review_item(review), tags: %w(strong em p br div ul ol li)
 strong Author:
-=< review.user.username
+=< present(review).review_username
 =< link_to 'Show', review_path(review)
-- if review.user == current_user
-  =< link_to 'Edit review', edit_review_path(review, movie_id: review.movie_id)
-  =< link_to 'Destroy', review_path(review), method: :delete, data: { confirm: 'Are you sure?' }
+= render 'edit_links', review: review
+br/
+=< sanitize present(review).review_item, tags: %w(strong em p br div ul ol li h1)
 hr/
