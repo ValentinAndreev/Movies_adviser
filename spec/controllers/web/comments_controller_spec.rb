@@ -18,7 +18,7 @@ RSpec.describe Web::CommentsController, type: :controller do
       end
 
       it 'should respond with a success status code (2xx)' do
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
       end
     end
 
@@ -30,7 +30,7 @@ RSpec.describe Web::CommentsController, type: :controller do
       end
 
       it 'should respond with a success status code (2xx)' do
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
       end
     end
 

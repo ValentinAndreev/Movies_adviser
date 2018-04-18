@@ -16,7 +16,7 @@ RSpec.describe UsersController, type: :controller do
 
       it { is_expected.to render_template(:index) }
       it 'should respond with a success status code (2xx)' do
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
       end
     end
 
@@ -39,7 +39,7 @@ RSpec.describe UsersController, type: :controller do
 
       it { is_expected.to render_template(:show) }
       it 'should respond with a success status code (2xx)' do
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
       end
     end
 
@@ -51,7 +51,7 @@ RSpec.describe UsersController, type: :controller do
 
       it { is_expected.to render_template('users/show_follow') }
       it 'should respond with a success status code (2xx)' do
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(200)
       end
     end
   end

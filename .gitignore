@@ -23,3 +23,4 @@ config/google.env
 config/tmdb_api_key.env
 public/uploads/
 /coverage/
+.ruby-version

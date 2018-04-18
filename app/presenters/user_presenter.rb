@@ -8,7 +8,7 @@ class UserPresenter < SimpleDelegator
   end
 
   def following_count
-    @followings_count ||= model.following.count
+    @following_count ||= model.following.count
   end
 
   def followers_count

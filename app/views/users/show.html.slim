@@ -1,4 +1,4 @@
-| Name: #{@user.username} #{image_tag(@user.avatar, height: '40', class: "rounded-circle")}
+| Name: #{@user.username} #{image_tag(@user.avatar.url, height: '40', class: "rounded-circle")}
 br/
 | Registration: #{@user.created_at}
 br/

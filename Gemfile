@@ -5,19 +5,19 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.4.0'
+ruby '2.5.0'
 
 # Rails
-gem 'coffee-rails', '~> 4.2'
+gem 'coffee-rails'
 gem 'dotenv-rails', require: 'dotenv/rails-now'
-gem 'jbuilder', '~> 2.5'
-gem 'nokogiri', '~> 1.8.2'
+gem 'jbuilder'
+gem 'nokogiri'
 gem 'pg'
-gem 'puma', '~> 3.7'
-gem 'rails', '~> 5.1.3'
-gem 'sass-rails', '~> 5.0'
-gem 'turbolinks', '~> 5'
-gem 'uglifier', '>= 1.3.0'
+gem 'puma'
+gem 'rails', '>= 5.2.x'
+gem 'sass-rails'
+gem 'turbolinks'
+gem 'uglifier'
 
 #Frontend
 gem 'bootstrap', '~> 4.0.0.beta'
@@ -30,10 +30,9 @@ gem 'slim'
 #Common
 gem 'activeadmin'
 gem 'devise'
-gem 'trix'
 
 #Services/API
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave'
 gem "fog-aws"
 gem 'omniauth-google-oauth2'
 gem 'themoviedb-api'
@@ -60,6 +59,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'brakeman'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'rack-mini-profiler'
   gem 'reek'
   gem 'rubocop'
   gem 'spring'

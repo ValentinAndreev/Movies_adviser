@@ -4,7 +4,7 @@
       = link_to "#{user.username}", user, id: "#{user.id}"
       br/
       = link_to(user) do
-        = image_tag(user.avatar, height: '60', class: "rounded-circle")
+        = image_tag(user.avatar.url, height: '60', class: "rounded-circle")
     .col-md-8.col-lg-9
       = user.about
       hr/

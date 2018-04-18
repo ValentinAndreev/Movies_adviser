@@ -2,7 +2,8 @@
 = form_with model: @review, local: true, :html => {:class => "form-horizontal center"} do |f|
   .form-group
     = f.label :text, "My review:"
-    = f.trix_editor :text, style: "overflow-y: auto;"
+    br/
+    = f.text_field :text, autofocus: true, class: 'form-control'
     = f.hidden_field :movie_id, value: params[:movie_id]
   .form-group
   = f.submit "Submit", class: "btn btn-default btn-primary"

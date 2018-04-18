@@ -20,7 +20,7 @@ feature "User's actions on reviews" do
 
   scenario 'user can edit own review' do
     click ['My review', 'Edit review']
-    find("#trix_input_review_#{review.id}", visible: false).set('<div>Edited review</div>')
+    fill_in review[text], with: 'Edited review'
     click_on 'Submit'
     expect(page).to_not have_content('Text of review')
     expect(page).to have_content('Edited review')
@@ -30,7 +30,7 @@ feature "User's actions on reviews" do
     click ['My review', 'Destroy']
     expect(page).to_not have_content('Edited review')
     click ["#{movie.title} (#{movie.release_date.year})", 'Create review']
-    find('#trix_input_review', visible: false).set('<div>Text of review</div>')
+    fill_in review[text], with: 'Text of review'
     click_on 'Submit'
     check_presence(["Review of #{review.user.username}", 'Text of review'])
   end
