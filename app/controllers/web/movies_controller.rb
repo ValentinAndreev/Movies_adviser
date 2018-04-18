@@ -10,7 +10,7 @@ module Web
 
     def index
       scope = FindMovies.new(Movie.all, current_user)
-      @movies = scope.call(movie_params)
+      @movies = scope.call(movie_params).distinct
       @message = scope.message(movie_params)
     end
 
@@ -23,7 +23,8 @@ module Web
     end
 
     def recommendations
-      @recommendations = @movie.recommendations
+      @recommendations = Movie.where(tmdb_id: @movie.recommendations)
+      fresh_when @recommendations
     end
 
     private

@@ -37,3 +37,9 @@ movies_data = []
   end
 end
 puts "Added #{Movie.count} movies to DB"
+
+tmdb_ids = Movie.pluck(:tmdb_id)
+Movie.all.each do |movie|
+  puts "Loading recommendations for #{movie.title}"
+  movie.update(recommendations: tmdb_ids & Tmdb::Movie.recommendations(movie.tmdb_id).results.pluck(:id))
+end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171220060951) do
+ActiveRecord::Schema.define(version: 20180418061605) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20171220060951) do
     t.integer "tmdb_id"
     t.date "release_date"
     t.string "genres", default: [], array: true
+    t.integer "recommendations", default: [], array: true
     t.index ["title"], name: "index_movies_on_title"
   end
 

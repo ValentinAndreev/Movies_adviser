@@ -10,6 +10,7 @@ FactoryGirl.define do
     tmdb_id 278
     release_date '1994-09-23'
     poster_path '/path'
+    recommendations [98]
   end
 
   factory :another_movie, class: Movie do
