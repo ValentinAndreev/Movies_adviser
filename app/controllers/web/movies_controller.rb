@@ -11,7 +11,7 @@ module Web
     def index
       scope = FindMovies.new(Movie.all, current_user)
       @movies = scope.call(movie_params).distinct
-      @message = scope.message(movie_params)
+      @message = FindMoviesMessage.message(movie_params)
     end
 
     def show
@@ -24,7 +24,6 @@ module Web
 
     def recommendations
       @recommendations = Movie.where(tmdb_id: @movie.recommendations)
-      fresh_when @recommendations
     end
 
     private
