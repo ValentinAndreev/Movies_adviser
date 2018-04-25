@@ -3,9 +3,10 @@
 # :reek:ControlParameter { exclude: [ paginate ] }
 # :reek:FeatureEnvy { exclude: [ call ]
 # :reek:TooManyStatements { exclude: [ call ] }
+# :reek:UtilityFunction { exclude: [ paginate, search, search_by_genres ] }
 
+# Query object for finding movie
 class FindMovies
-  # Query object for finding movie
   attr_reader :initial_scope
   attr_reader :current_user
 

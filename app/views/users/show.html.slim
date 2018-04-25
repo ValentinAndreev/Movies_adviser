@@ -9,5 +9,5 @@ br/
 - if @user.followers_count > 0
   br/
   = link_to "followers #{@user.followers_count}", followers_user_path(@user)
-  br/
+br/
 = render "#{@user.action(current_user)}"

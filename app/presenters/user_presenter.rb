@@ -1,18 +1,9 @@
 # frozen_string_literal: true
 
-require 'delegate'
 # Presenter for user
 class UserPresenter < SimpleDelegator
   def reviews_votes
     @reviews_votes ||= "Reviews #{model.reviews.count} Votes #{model.votes.count}"
-  end
-
-  def following_count
-    @following_count ||= model.following.count
-  end
-
-  def followers_count
-    @followers_count ||= model.followers.count
   end
 
   def action(current_user)

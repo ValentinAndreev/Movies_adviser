@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Provides null pattern implementation
 module CurrentUserConcern
   extend ActiveSupport::Concern
 

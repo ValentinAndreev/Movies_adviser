@@ -20,20 +20,20 @@
       br/
       = link_to "Recommendations from TMDB", recommendations_movie_path(@movie)
       br/
-      - if @review.first
-        = link_to "My review", review_path(id: @review.first)
+      - if review.first
+        = link_to "My review", review_path(id: review.first)
       - else
         = link_to "Create review", new_review_path(movie_id: @movie)
       br/
-      = link_to "All reviews", reviews_path(movie_id: @movie) if @movie.reviews_size > 0
+      = link_to "All reviews", reviews_path(movie_id: @movie) if @movie.reviews_count > 0
       #rec
-        = @movie.recommendation(@vote)
+        = @movie.recommendation(vote)
       | Change to:
       =< link_to 'recommended', votes_path(value: 1, movie_id: @movie), remote: true, method: :patch, id: 'recommended'
       =< link_to 'neutral', votes_path(value: 0, movie_id: @movie), remote: true, method: :patch, id: 'neutral'
       =< link_to 'not recommended', votes_path(value: -1, movie_id: @movie), remote: true, method: :patch, id: 'not-recommended'
   hr/
-= render @comments
+= render comments
 #comments
 = link_to 'New comment', new_movie_comment_path(@movie), remote: true, class: 'float-right'
 br/

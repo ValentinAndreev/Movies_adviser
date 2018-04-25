@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Helper for feature tests
 module SpecMacros
   def log_in_user(name, password)
     visit root_path

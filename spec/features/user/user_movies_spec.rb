@@ -23,7 +23,7 @@ feature "User's actions on movies" do
 
   scenario 'user can visit page of TMDB recommendations for movie' do
     click ["#{movie.title} (#{movie.release_date.year})", 'Recommendations from TMDB']
-    check_presence(["Recommendations from TMDB for #{movie.title}:", another_movie.title.to_s])
+    check_presence(["Recommendations from TMDB for: #{movie.title}", another_movie.title.to_s])
     expect(page).to have_link(href: "/movies/#{another_movie.id}")
   end
 

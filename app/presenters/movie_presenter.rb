@@ -1,12 +1,7 @@
 # frozen_string_literal: true
 
-require 'delegate'
 # Presenter for movie
 class MoviePresenter < SimpleDelegator
-  def reviews_size
-    @reviews_size ||= model.reviews.count
-  end
-
   def title_year
     @title_year ||= "#{model.title} (#{model.release_date.year})"
   end

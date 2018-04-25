@@ -1,25 +1,23 @@
 # frozen_string_literal: true
 
-# :reek:TooManyInstanceVariables { max_instance_variables: 8 }
-
 module Web
   # Movies controller
   class MoviesController < Web::BaseController
     before_action :find_movie, except: :index
-    before_action :find_comments, :find_vote, only: :show
+    respond_to :js, :html, only: :show
 
     def index
-      scope = FindMovies.new(Movie.all, current_user)
-      @movies = scope.call(movie_params).distinct
-      @message = FindMoviesMessage.message(movie_params)
+      movies = FindMovies.new(Movie.all, current_user).call(movie_params).distinct
+      message = FindMoviesMessage.message(movie_params)
+      render :index, locals: { movies: movies, message: message }
     end
 
     def show
-      @review = Review.where(movie_id: @movie.id, user_id: current_user)
-      respond_to do |format|
-        format.html
-        format.js
-      end
+      id = @movie.id
+      review = Review.where(movie_id: id, user_id: current_user)
+      comments = @movie.comments.order(:created_at).all
+      vote = Vote.find_by(user_id: current_user, movie_id: id)
+      render :show, locals: { review: review, comments: comments, vote: vote }
     end
 
     def recommendations
@@ -34,14 +32,6 @@ module Web
 
     def find_movie
       @movie = @commentable = MoviePresenter.new(Movie.find(params[:id]))
-    end
-
-    def find_comments
-      @comments = @movie.comments.order(:created_at).all
-    end
-
-    def find_vote
-      @vote = Vote.find_by(user_id: current_user, movie_id: @movie.id)
     end
   end
 end

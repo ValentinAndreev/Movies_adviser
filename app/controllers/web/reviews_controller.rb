@@ -1,13 +1,11 @@
 # frozen_string_literal: true
 
 # :reek:NilCheck { exclude: [ find_movie ] }
-# :reek:TooManyInstanceVariables { max_instance_variables: 5 }
 
 module Web
   # Reviews of users controller
   class ReviewsController < Web::BaseController
     before_action :find_review, except: %i[index new create]
-    before_action :find_comments, only: :show
     before_action :find_movie
 
     def index
@@ -15,7 +13,11 @@ module Web
       redirect_to @movie if @reviews.empty?
     end
 
-    def show; end
+    def show
+      @commentable = @review
+      comments = @review.comments.order(:created_at).all if @review
+      render :show, locals: { comments: comments }
+    end
 
     def new
       @review = Review.new
@@ -54,11 +56,6 @@ module Web
     def find_review
       review = Review.find_by(id: params[:id]) || Review.where(user: current_user, movie_id: params[:movie_id]).first
       @review = ReviewPresenter.new(review)
-    end
-
-    def find_comments
-      @commentable = @review
-      @comments = @review.comments.order(:created_at).all if @review
     end
 
     def find_movie

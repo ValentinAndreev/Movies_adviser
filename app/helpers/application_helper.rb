@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# :reek:FeatureEnvy { exclude: [ present ]
+
+# Main helpers, provides presenters...
 module ApplicationHelper
   def present(model)
     return if model.blank?

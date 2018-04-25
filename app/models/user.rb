@@ -2,6 +2,7 @@
 
 # :reek:DuplicateMethodCall { exclude: [ from_omniauth ]
 
+# User model
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -16,6 +17,9 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:google_oauth2]
   validates :username,  presence: true
   mount_uploader :avatar, AvatarUploader
+
+  delegate :count, to: :following, prefix: true
+  delegate :count, to: :followers, prefix: true
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
