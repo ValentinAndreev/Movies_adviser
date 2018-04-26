@@ -2,8 +2,8 @@
 
 desc 'All tests'
 task :tst do
-  sh('brakeman -q')
   sh('reek')
   sh('rubocop')
   sh('rspec')
+  sh('brakeman -q')
 end
