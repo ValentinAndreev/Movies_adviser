@@ -1,11 +1,14 @@
 = render 'web/movies/movie', movie: @movie
-= link_to 'All reviews', reviews_path(movie_id: @movie.id)
-= render 'edit_links', review: @review
+.container
+  .row
+    .text
+      = link_to 'All reviews', reviews_path(movie_id: @movie.id)
+      = render 'edit_links', review: @review
+      br/
+      strong Review of #{@review.username}
+      br/
+      = sanitize @review.text, tags: %w(strong em p br div ul ol li h1)
 br/
-strong Review of #{@review.username}
-br/
-= sanitize @review.text, tags: %w(strong em p br div ul ol li h1)
-hr/
 = render comments if comments
 #comments
 = link_to 'New comment', new_review_comment_path(@review), remote: true, class: 'float-right'

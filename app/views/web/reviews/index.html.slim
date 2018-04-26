@@ -1,4 +1,7 @@
 = render 'web/movies/movie', movie: @movie
-strong All reviews
+.text-center
+  strong All reviews
 br/
-= render 'reviews'
+= paginate @reviews, theme: 'twitter-bootstrap-4'
+= render @reviews
+= paginate @reviews, theme: 'twitter-bootstrap-4'

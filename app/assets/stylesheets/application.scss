@@ -15,10 +15,19 @@
 
 @import "bootstrap";
 
- a:link {
-  text-decoration: none;
+a:link {
+    text-decoration: none;
 }
 
 #comment-close {
-  display: none;
+    display: none;
+}
+
+.row {
+    background-color: #ffffff;
+    padding: 10px;
+}
+
+body {
+    background-color: #f2f2f2;
 }

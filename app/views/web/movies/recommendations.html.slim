@@ -7,8 +7,8 @@ h5.my-4.text-center
       a.d-block.mb-4.h-105
         = link_to present(rec_movie).short_title, rec_movie
         br/
-        br/
         = link_to(rec_movie) do
           = image_tag(present(rec_movie).poster_path('w92'))
         br/
         = rec_movie.vote_average
+        hr/

@@ -10,9 +10,8 @@
       br/
       = @movie.rating_title
       br/
-      | On
-      =< link_to "IMBD", "http://www.imdb.com/title/#{@movie.imbd_id}/"
-      =< @movie.vote_average
+      = link_to "On IMBD ", "http://www.imdb.com/title/#{@movie.imbd_id}/"
+      = @movie.vote_average
       br/
       | Genres:
       - @movie.genres.each do |genre|
@@ -32,7 +31,7 @@
       =< link_to 'recommended', votes_path(value: 1, movie_id: @movie), remote: true, method: :patch, id: 'recommended'
       =< link_to 'neutral', votes_path(value: 0, movie_id: @movie), remote: true, method: :patch, id: 'neutral'
       =< link_to 'not recommended', votes_path(value: -1, movie_id: @movie), remote: true, method: :patch, id: 'not-recommended'
-  hr/
+br/
 = render comments
 #comments
 = link_to 'New comment', new_movie_comment_path(@movie), remote: true, class: 'float-right'

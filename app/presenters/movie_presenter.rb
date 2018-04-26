@@ -22,22 +22,14 @@ class MoviePresenter < SimpleDelegator
   end
 
   def rating
-    @rating ||= votes_number.positive? ? (all_votes.sum.to_f / votes_number.to_f).round(2) : 0
+    @rating ||= model.votes.average(:value) || 0
   end
 
   def rating_title
-    @rating_title ||= "Rating: (from -1 - not recommended, to 1 - recommended): #{rating} (#{votes_number} votes)."
+    @rating_title ||= "Rating: (from -1 - not recommended, to 1 - recommended): #{rating} (#{model.votes.count} votes)."
   end
 
   private
-
-  def all_votes
-    model.votes.pluck(:value)
-  end
-
-  def votes_number
-    all_votes.count
-  end
 
   def model
     __getobj__
