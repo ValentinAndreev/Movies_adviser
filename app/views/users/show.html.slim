@@ -3,11 +3,9 @@ br/
 | Registration: #{@user.created_at}
 br/
 | About me: #{@user.about}
-- if @user.following_count > 0
-  br/
-  = link_to "following #{@user.following_count}", following_user_path(@user)
-- if @user.followers_count > 0
-  br/
-  = link_to "followers #{@user.followers_count}", followers_user_path(@user)
+br/
+= link_to_if(@user.following_count > 0, "following #{@user.following_count}", following_user_path(@user))
+br/
+= link_to_if(@user.followers_count > 0, "followers #{@user.followers_count}", followers_user_path(@user))
 br/
 = render "#{@user.action(current_user)}"

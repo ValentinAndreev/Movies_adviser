@@ -1,36 +1,32 @@
-.container
-  .row
-    .col-lg-4.col-md-5.text-center
-      = image_tag(@movie.poster_path('w300'), height: '380')
-    .col-lg-8.col-md-7
-      h4.text-center
-        = @movie.title_year
-      br/
-      = @movie.overview
-      br/
-      = @movie.rating_title
-      br/
-      = link_to "On IMBD ", "http://www.imdb.com/title/#{@movie.imbd_id}/"
-      = @movie.vote_average
-      br/
-      | Genres:
-      - @movie.genres.each do |genre|
-        =< link_to "#{genre}  ", movies_path(genres: genre)
-      br/
-      = link_to "Recommendations from TMDB", recommendations_movie_path(@movie)
-      br/
-      - if review.first
-        = link_to "My review", review_path(id: review.first)
-      - else
-        = link_to "Create review", new_review_path(movie_id: @movie)
-      br/
-      = link_to "All reviews", reviews_path(movie_id: @movie) if @movie.reviews_count > 0
-      #rec
-        = @movie.recommendation(vote)
-      | Change to:
-      =< link_to 'recommended', votes_path(value: 1, movie_id: @movie), remote: true, method: :patch, id: 'recommended'
-      =< link_to 'neutral', votes_path(value: 0, movie_id: @movie), remote: true, method: :patch, id: 'neutral'
-      =< link_to 'not recommended', votes_path(value: -1, movie_id: @movie), remote: true, method: :patch, id: 'not-recommended'
+.row
+  .col-lg-4.col-md-5.text-center
+    = image_tag(@movie.poster_path('w300'), height: '380')
+  .col-lg-8.col-md-7
+    h4.text-center
+      = @movie.title_year
+    br/
+    = @movie.overview
+    br/
+    = @movie.rating_title
+    br/
+    = link_to "On IMBD ", "http://www.imdb.com/title/#{@movie.imbd_id}/"
+    = @movie.vote_average
+    br/
+    | Genres:
+    - @movie.genres.each do |genre|
+      =< link_to "#{genre}  ", movies_path(genres: genre)
+    br/
+    = link_to "Recommendations from TMDB", recommendations_movie_path(@movie)
+    br/
+    = @movie.my_review_link(review)
+    br/
+    = @movie.all_review_link
+    #rec
+      = @movie.recommendation(vote)
+    | Change to:
+    =< link_to 'recommended', votes_path(value: 1, movie_id: @movie), remote: true, method: :patch, id: 'recommended'
+    =< link_to 'neutral', votes_path(value: 0, movie_id: @movie), remote: true, method: :patch, id: 'neutral'
+    =< link_to 'not recommended', votes_path(value: -1, movie_id: @movie), remote: true, method: :patch, id: 'not-recommended'
 br/
 = render comments
 #comments

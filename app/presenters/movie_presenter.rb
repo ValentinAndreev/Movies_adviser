@@ -1,7 +1,12 @@
 # frozen_string_literal: true
 
+# :reek:DuplicateMethodCall { exclude: [ my_review_link ] }
+# :reek:UtilityFunction { exclude: [ routes ] }
+
 # Presenter for movie
 class MoviePresenter < SimpleDelegator
+  include ActionView::Helpers::UrlHelper
+
   def title_year
     @title_year ||= "#{model.title} (#{model.release_date.year})"
   end
@@ -29,7 +34,23 @@ class MoviePresenter < SimpleDelegator
     @rating_title ||= "Rating: (from -1 - not recommended, to 1 - recommended): #{rating} (#{model.votes.count} votes)."
   end
 
+  def all_review_link
+    link_to 'All reviews', routes.reviews_path(movie_id: model) if model.reviews_count.positive?
+  end
+
+  def my_review_link(review)
+    if review.first
+      link_to 'My review', routes.review_path(id: review.first)
+    else
+      link_to 'Create review', routes.new_review_path(movie_id: model)
+    end
+  end
+
   private
+
+  def routes
+    Rails.application.routes.url_helpers
+  end
 
   def model
     __getobj__
